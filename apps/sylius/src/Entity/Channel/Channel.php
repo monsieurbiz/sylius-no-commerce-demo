@@ -10,6 +10,13 @@ use Sylius\Component\Core\Model\Channel as BaseChannel;
 /**
  * @ORM\Entity
  * @ORM\Table(name="sylius_channel")
+ * @ORM\AssociationOverrides({
+ *     @ORM\AssociationOverride(name="baseCurrency",
+ *         joinColumns=@ORM\JoinColumn(
+ *             name="base_currency_id", referencedColumnName="id", nullable=true
+ *         )
+ *     )
+ * })
  */
 class Channel extends BaseChannel
 {

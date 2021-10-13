@@ -319,6 +319,31 @@
     "monolog/monolog": {
         "version": "1.23.0"
     },
+    "monsieurbiz/sylius-no-commerce-plugin": {
+        "version": "0.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.1",
+            "ref": "b87bb636d27036715b314d9937226c755aef6c10"
+        },
+        "files": [
+            "config/packages/monsieurbiz_sylius_nocommerce_plugin.yaml"
+        ]
+    },
+    "monsieurbiz/sylius-settings-plugin": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "fafa903dedd49e881d21be1236c3d002e45278ed"
+        },
+        "files": [
+            "config/routes/monsieurbiz_settings_plugin.yaml",
+            "config/packages/monsieurbiz_settings_plugin.yaml"
+        ]
+    },
     "myclabs/deep-copy": {
         "version": "1.8.1"
     },
