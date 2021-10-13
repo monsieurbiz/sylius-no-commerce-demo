@@ -26,7 +26,8 @@
         "sylius/paypal-plugin": "^1.2.1",
         "sylius/sylius": "^1.10",
         "symfony/dotenv": "^4.4 || ^5.2",
-        "symfony/flex": "^1.11"
+        "symfony/flex": "^1.11",
+        "symfony/webpack-encore-bundle": "^1.12"
     },
     "conflict": {
         "symfony/form": "4.4.11 || 4.4.12"
