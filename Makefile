@@ -2,7 +2,7 @@
 SHELL=/bin/bash
 APP_DIR=apps/sylius
 DOMAINS=${APP_DIR}:nocommerce
-SYLIUS_FIXTURES_SUITE=default
+SYLIUS_FIXTURES_SUITE=nocommerce
 SYMFONY=cd ${APP_DIR} && symfony
 COMPOSER=${SYMFONY} composer
 CONSOLE=${SYMFONY} console
