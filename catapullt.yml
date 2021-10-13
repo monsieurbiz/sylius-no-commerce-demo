@@ -1,0 +1,15 @@
+hooks:
+  init:
+    - rm -rf apps/sylius/var/cache
+    - %make% install
+    - %hook% set-url
+
+  fortress.update.end:
+    - sleep 10
+    - %hook% init
+
+  fortress.start.end:
+    - %hook% fortress.update.end
+
+  set-url:
+    - cat resources/sql/fortress-init.sql | sed 's/{{FORTRESS_HOST}}/%fortress_host%/g' | (%dc% exec -T db mysql -uroot -v sylius_fortress)
