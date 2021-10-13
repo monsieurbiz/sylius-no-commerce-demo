@@ -1,0 +1,77 @@
+version: '3'
+
+services:
+  php:
+    build:
+      context: php
+      args:
+        USER_UID: 1000
+    environment:
+      APP_ENV: fortress
+      FORTRESS_HOST: ${FORTRESS_HOST}
+    volumes:
+      - ../../:/var/www:rw,cached
+      - ${HOME}/.composer:/var/www/.composer:rw,cached
+    links:
+      - db
+      - node
+      - mail
+    networks:
+      - fortress
+      - default
+    labels:
+      - "traefik.frontend.rule=Host:${FORTRESS_HOST}"
+      - "traefik.port=80"
+      - "traefik.enable=true"
+      - "traefik.frontend.entryPoints=http,https"
+      - "traefik.frontend.passHostHeader=true"
+      - "traefik.docker.network=fortress_web"
+
+  db:
+    image: "monsieurbiz/mariadb:latest"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_DATABASE: sylius_fortress
+      FORTRESS_HOST: ${FORTRESS_HOST}
+    volumes:
+      - ../../:/var/www:cached
+      - database:/var/lib/mysql:rw,cached
+    networks:
+      - fortress
+      - default
+    labels:
+      - "traefik.enable=false"
+
+  mail:
+    image: monsieurbiz/mailcatcher
+    networks:
+      - fortress
+      - default
+    labels:
+      - "traefik.frontend.rule=Host:mail.${FORTRESS_HOST}"
+      - "traefik.port=1080"
+      - "traefik.enable=true"
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.frontend.passHostHeader=true"
+      - "traefik.docker.network=fortress_web"
+
+  node:
+    build:
+      context: node/
+      args:
+        USER_UID: 1000
+    volumes:
+      - ../../:/var/www:rw,delegated
+    networks:
+      - fortress
+      - default
+    labels:
+      - "traefik.enable=false"
+
+volumes:
+  database: {}
+
+networks:
+  fortress:
+    external:
+      name: fortress_web
