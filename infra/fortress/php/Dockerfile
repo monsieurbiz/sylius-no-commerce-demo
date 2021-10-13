@@ -1,4 +1,4 @@
-FROM monsieurbiz/php:7.4-apache
+FROM monsieurbiz/php:8.0-apache
 
 RUN pecl install redis && \
     docker-php-ext-enable redis
