@@ -1,0 +1,12 @@
+app_admin_book:
+    resource: |
+        alias: app.book
+        section: admin
+        templates: "@SyliusAdmin/Crud"
+        redirect: index
+        except: ['show']
+        grid: app_admin_book
+        vars:
+            index:
+                icon: 'book'
+    type: sylius.resource
