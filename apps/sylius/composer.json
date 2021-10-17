@@ -1,4 +1,6 @@
 {
+    "name": "monsieurbiz/sylius-no-commerce-demo",
+    "description": "",
     "type": "project",
     "keywords": [
         "symfony",
