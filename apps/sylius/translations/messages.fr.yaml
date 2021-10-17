@@ -12,3 +12,4 @@ app:
         title: Titre
         description: Description
         author: Auteur
+        id: ID
