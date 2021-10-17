@@ -5,6 +5,6 @@ sylius_resource:
                 model: App\Entity\NoCommerce\Author
                 interface: App\Entity\NoCommerce\AuthorInterface
                 form: App\Form\Type\AuthorType
-                # repository: App\Repository\AuthorRepository
+                repository: App\Repository\AuthorRepository
                 # factory: App\Factory\AuthorFactory
                 # controller: App\Controller\AuthorController
