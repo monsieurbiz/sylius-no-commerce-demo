@@ -5,7 +5,7 @@ sylius_resource:
                 model: App\Entity\NoCommerce\Book
                 interface: App\Entity\NoCommerce\BookInterface
                 form: App\Form\Type\BookType
-                # repository: App\Repository\BookRepository
+                repository: App\Repository\BookRepository
                 # factory: App\Factory\BookFactory
                 # controller: App\Controller\BookController
             translation:
