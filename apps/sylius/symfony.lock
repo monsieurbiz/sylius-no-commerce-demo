@@ -319,6 +319,19 @@
     "monolog/monolog": {
         "version": "1.23.0"
     },
+    "monsieurbiz/sylius-alert-message-plugin": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "9eafe2a0e8d63693fe2b3b93806d10bd8e18294a"
+        },
+        "files": [
+            "config/routes/monsieurbiz_sylius_alert_message_plugin.yaml",
+            "config/packages/monsieurbiz_sylius_alert_message_plugin.yaml"
+        ]
+    },
     "monsieurbiz/sylius-no-commerce-plugin": {
         "version": "0.1",
         "recipe": {

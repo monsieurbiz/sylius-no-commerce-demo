@@ -23,6 +23,7 @@
     ],
     "require": {
         "php": "^7.4 || ^8.0",
+        "monsieurbiz/sylius-alert-message-plugin": "dev-master",
         "monsieurbiz/sylius-no-commerce-plugin": "^0.1.5",
         "sylius/paypal-plugin": "^1.2.1",
         "sylius/sylius": "^1.10",

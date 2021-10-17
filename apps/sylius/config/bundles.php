@@ -61,4 +61,5 @@ return [
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     MonsieurBiz\SyliusSettingsPlugin\MonsieurBizSyliusSettingsPlugin::class => ['all' => true],
     MonsieurBiz\SyliusNoCommercePlugin\MonsieurBizSyliusNoCommercePlugin::class => ['all' => true],
+    MonsieurBiz\SyliusAlertMessagePlugin\MonsieurBizSyliusAlertMessagePlugin::class => ['all' => true],
 ];
