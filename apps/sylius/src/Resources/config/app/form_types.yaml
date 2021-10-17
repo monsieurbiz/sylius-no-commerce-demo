@@ -1,0 +1,20 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+    
+    App\Form\Type\AuthorType:
+        arguments:
+            $dataClass: '%app.model.author.class%'
+            $validationGroups: ['app']
+    
+    App\Form\Type\BookType:
+        arguments:
+            $dataClass: '%app.model.book.class%'
+            $validationGroups: ['app']
+
+    App\Form\Type\BookTranslationType:
+        arguments:
+            $dataClass: '%app.model.book_translation.class%'
+            $validationGroups: ['app']

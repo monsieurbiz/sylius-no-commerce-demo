@@ -3,3 +3,4 @@ imports:
     - { resource: "resources.yaml" }
     - { resource: "services.yaml" }
     - { resource: "events.yaml" }
+    - { resource: "form_types.yaml" }
