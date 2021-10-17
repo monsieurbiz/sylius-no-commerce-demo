@@ -3,3 +3,12 @@ app:
         library: Bibliothèque
         authors: Auteurs
         books: Livres
+        new_author: Ajouter un auteur
+        edit_author: Modifier un auteur
+        new_book: Ajouter un livre
+        edit_book: Modifier un livre
+        first_name: Prénom
+        last_name: Nom
+        title: Titre
+        description: Description
+        author: Auteur

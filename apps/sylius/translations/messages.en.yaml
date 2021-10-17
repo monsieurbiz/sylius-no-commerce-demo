@@ -3,3 +3,12 @@ app:
         library: Library
         authors: Authors
         books: Books
+        new_author: Add an author
+        edit_author: Edit an author
+        new_book: Add a book
+        edit_book: Edit a book
+        first_name: First name
+        last_name: Last name
+        title: Title
+        description: Description
+        author: Author
