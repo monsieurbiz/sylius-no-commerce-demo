@@ -1,0 +1,64 @@
+sylius_grid:
+    grids:
+        app_admin_book:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: '%app.model.book.class%'
+                    repository:
+                        method: createListQueryBuilder
+                        arguments: ["%locale%"]
+            sorting:
+                id: desc
+            filters:
+                title:
+                    type: string
+                    label: app.ui.title
+                    options:
+                        fields: [translation.title]
+                description:
+                    type: string
+                    label: app.ui.description
+                    options:
+                        fields: [translation.description]
+                author:
+                    type: entity
+                    label: app.ui.author
+                    form_options:
+                        class: '%app.model.author.class%'
+                        choice_label: fullName
+                firstName:
+                    type: string    
+                    label: app.ui.first_name
+                    options:
+                        fields: [author.firstName]
+                lastName:
+                    type: string
+                    label: app.ui.last_name
+                    options:
+                        fields: [author.lastName]
+            fields:
+                id:
+                    label: app.ui.id
+                    type: string
+                    sortable: ~
+                title:
+                    type: string
+                    label: app.ui.title
+                    sortable: translation.title
+                fullName:
+                    type: string
+                    label: app.ui.author
+                    path: author.fullName
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+                bulk:
+                    delete:
+                        type: delete

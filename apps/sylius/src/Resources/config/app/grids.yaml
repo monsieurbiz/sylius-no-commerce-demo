@@ -1,0 +1,3 @@
+imports:
+    - { resource: "grids/author.yaml" }
+    - { resource: "grids/book.yaml" }
