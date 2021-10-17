@@ -1,0 +1,12 @@
+App\Entity\NoCommerce\BookTranslation:
+    properties:
+        title:
+            -   NotBlank:
+                    groups: [app]
+            -   Length:
+                    min: 2
+                    max: 255
+                    groups: [app]
+        description:
+            -   NotBlank:
+                    groups: [app]
