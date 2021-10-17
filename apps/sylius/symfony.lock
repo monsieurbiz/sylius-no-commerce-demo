@@ -332,6 +332,19 @@
             "config/packages/monsieurbiz_sylius_alert_message_plugin.yaml"
         ]
     },
+    "monsieurbiz/sylius-cms-page-plugin": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "e01b794cd3e5223081fb548c75114c1e77e07f34"
+        },
+        "files": [
+            "config/routes/monsieurbiz_sylius_cms_page_plugin.yaml",
+            "config/packages/monsieurbiz_sylius_cms_page_plugin.yaml"
+        ]
+    },
     "monsieurbiz/sylius-no-commerce-plugin": {
         "version": "0.1",
         "recipe": {
@@ -342,6 +355,19 @@
         },
         "files": [
             "config/packages/monsieurbiz_sylius_nocommerce_plugin.yaml"
+        ]
+    },
+    "monsieurbiz/sylius-rich-editor-plugin": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "6658acdeb3fabab4929d25cd7209444a36a5c912"
+        },
+        "files": [
+            "config/routes/monsieurbiz_sylius_rich_editor_plugin.yaml",
+            "config/packages/monsieurbiz_sylius_rich_editor_plugin.yaml"
         ]
     },
     "monsieurbiz/sylius-settings-plugin": {

@@ -62,4 +62,6 @@ return [
     MonsieurBiz\SyliusSettingsPlugin\MonsieurBizSyliusSettingsPlugin::class => ['all' => true],
     MonsieurBiz\SyliusNoCommercePlugin\MonsieurBizSyliusNoCommercePlugin::class => ['all' => true],
     MonsieurBiz\SyliusAlertMessagePlugin\MonsieurBizSyliusAlertMessagePlugin::class => ['all' => true],
+    MonsieurBiz\SyliusRichEditorPlugin\MonsieurBizSyliusRichEditorPlugin::class => ['all' => true],
+    MonsieurBiz\SyliusCmsPagePlugin\MonsieurBizSyliusCmsPagePlugin::class => ['all' => true],
 ];
