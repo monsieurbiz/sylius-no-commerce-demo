@@ -18,10 +18,12 @@ use Sylius\Component\Resource\Model\TranslatableTrait;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="app_book")
+ * @ApiResource()
  */
 class Book implements BookInterface
 {

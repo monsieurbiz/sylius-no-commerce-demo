@@ -18,10 +18,12 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="app_book_translation")
+ * @ApiResource()
  */
 class BookTranslation extends AbstractTranslation implements BookTranslationInterface
 {
