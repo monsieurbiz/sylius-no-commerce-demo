@@ -1,0 +1,5 @@
+app:
+    ui:
+        library: Library
+        authors: Authors
+        books: Books
