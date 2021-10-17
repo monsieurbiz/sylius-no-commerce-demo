@@ -1,0 +1,10 @@
+sylius_resource:
+    resources:
+        app.author:
+            classes:
+                model: App\Entity\NoCommerce\Author
+                interface: App\Entity\NoCommerce\AuthorInterface
+                # form: App\Form\Type\AuthorType
+                # repository: App\Repository\AuthorRepository
+                # factory: App\Factory\AuthorFactory
+                # controller: App\Controller\AuthorController
