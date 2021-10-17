@@ -345,6 +345,9 @@
             "config/packages/monsieurbiz_sylius_cms_page_plugin.yaml"
         ]
     },
+    "monsieurbiz/sylius-homepage-plugin": {
+        "version": "v1.0.1"
+    },
     "monsieurbiz/sylius-no-commerce-plugin": {
         "version": "0.1",
         "recipe": {
