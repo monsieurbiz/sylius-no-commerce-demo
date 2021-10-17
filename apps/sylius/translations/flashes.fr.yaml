@@ -1,0 +1,11 @@
+app:
+    book:
+        create: Le livre a été créé
+        update: Le livre a été modifié
+        delete: Le livre a été supprimé
+        bulk_delete: Les livres ont été supprimés
+    author:
+        create: L'auteur a été créé
+        update: L'auteur a été modifié
+        delete: L'auteur a été supprimé
+        bulk_delete: Les auteurs ont été supprimés
