@@ -1,0 +1,4 @@
+app_admin_author:
+    resource: admin/author.yaml
+app_admin_book:
+    resource: admin/book.yaml

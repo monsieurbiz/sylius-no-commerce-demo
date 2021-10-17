@@ -1,0 +1,2 @@
+app:
+    resource: "../../src/Resources/config/app/routes.yaml"
