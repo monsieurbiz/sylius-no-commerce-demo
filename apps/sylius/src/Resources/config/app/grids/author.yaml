@@ -1,0 +1,40 @@
+sylius_grid:
+    grids:
+        app_admin_author:
+            driver:
+                options:
+                    class: '%app.model.author.class%'
+            sorting:
+                id: desc
+            filters:
+                firstName:
+                    type: string
+                    label: app.ui.first_name
+                lastName:
+                    type: string
+                    label: app.ui.last_name
+            fields:
+                id:
+                    label: app.ui.id
+                    type: string
+                    sortable: ~
+                firstName:
+                    type: string
+                    label: app.ui.first_name
+                    sortable: ~
+                lastName:
+                    type: string
+                    label: app.ui.last_name
+                    sortable: ~
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+                bulk:
+                    delete:
+                        type: delete

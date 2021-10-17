@@ -4,6 +4,7 @@ imports:
     - { resource: "services.yaml" }
     - { resource: "events.yaml" }
     - { resource: "form_types.yaml" }
+    - { resource: "grids.yaml" }
 
 framework:
     validation:
