@@ -25,4 +25,6 @@ interface AuthorInterface extends ResourceInterface, TimestampableInterface
     public function getLastName(): ?string;
 
     public function setLastName(?string $lastName): void;
+
+    public function getFullName(): string;
 }

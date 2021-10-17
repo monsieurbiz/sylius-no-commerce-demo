@@ -83,4 +83,9 @@ class Author implements AuthorInterface
     {
         $this->lastName = $lastName;
     }
+
+    public function getFullName(): string
+    {
+        return trim(sprintf('%s %s', $this->firstName, $this->lastName));
+    }
 }
