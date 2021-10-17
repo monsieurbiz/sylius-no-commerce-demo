@@ -2,3 +2,4 @@ imports:
     - { resource: "fixtures/basics.yaml" }
     - { resource: "fixtures/pages.yaml" }
     - { resource: "fixtures/authors.yaml" }
+    - { resource: "fixtures/books.yaml" }

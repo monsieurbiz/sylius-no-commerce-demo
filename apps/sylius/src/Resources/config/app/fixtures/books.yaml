@@ -1,0 +1,18 @@
+sylius_fixtures:
+    suites:
+        nocommerce:
+            fixtures:
+                app_book:
+                    options:
+                        random: 10
+                        custom:
+                            -   author: 'Maxime Huran'
+                                translations:
+                                    fr_FR:
+                                        title: 'Sylius sans e-commerce'
+                                        description: 'Découvrez comment et pourquoi utiliser Sylius sans e-commerce.'
+                            -   author: 'John Doe'
+                                translations:
+                                    fr_FR:
+                                        title: 'La vie de Monsieur X'
+                                        description: 'Un roman d''action captivant.'
