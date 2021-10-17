@@ -4,7 +4,7 @@ sylius_resource:
             classes:
                 model: App\Entity\NoCommerce\Book
                 interface: App\Entity\NoCommerce\BookInterface
-                # form: App\Form\Type\BookType
+                form: App\Form\Type\BookType
                 # repository: App\Repository\BookRepository
                 # factory: App\Factory\BookFactory
                 # controller: App\Controller\BookController
@@ -12,7 +12,7 @@ sylius_resource:
                 classes:
                     model: App\Entity\NoCommerce\BookTranslation
                     interface: App\Entity\NoCommerce\BookTranslationInterface
-                    # form: App\Form\Type\BookTranslationType
+                    form: App\Form\Type\BookTranslationType
                     # repository: App\Repository\BookTranslationRepository
                     # factory: App\Factory\BookTranslationFactory
                     # controller: App\Controller\BookTranslationController
