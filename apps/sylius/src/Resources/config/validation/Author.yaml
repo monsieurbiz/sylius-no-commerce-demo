@@ -1,0 +1,16 @@
+App\Entity\NoCommerce\Author:
+    properties:
+        firstName:
+            -   NotBlank:
+                    groups: [app]
+            -   Length:
+                    min: 2
+                    max: 255
+                    groups: [app]
+        lastName:
+            -   NotBlank:
+                    groups: [app]
+            -   Length:
+                    min: 2
+                    max: 255
+                    groups: [app]

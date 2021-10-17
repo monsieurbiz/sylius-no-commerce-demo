@@ -4,3 +4,9 @@ imports:
     - { resource: "services.yaml" }
     - { resource: "events.yaml" }
     - { resource: "form_types.yaml" }
+
+framework:
+    validation:
+        mapping:
+            paths:
+                - "%kernel.project_dir%/src/Resources/config/validation/"

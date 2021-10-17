@@ -1,0 +1,7 @@
+App\Entity\NoCommerce\Book:
+    properties:
+        translations:
+            -   Valid: ~
+        author:
+            -   NotBlank:
+                    groups: [app]
