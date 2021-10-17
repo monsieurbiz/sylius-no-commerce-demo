@@ -1,0 +1,12 @@
+sylius_fixtures:
+    suites:
+        nocommerce:
+            fixtures:
+                app_author:
+                    options:
+                        random: 10
+                        custom:
+                            -   firstName: Maxime
+                                lastName: Huran
+                            -   firstName: John
+                                lastName: Doe
