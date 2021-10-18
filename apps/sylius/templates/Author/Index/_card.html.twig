@@ -8,6 +8,7 @@
         </div>
     </div>
     <div class="extra content">
-        <a href="{{ path('app_front_author_show', {id: author.id}) }}" class="ui basic button">Voir</a>
+        <a href="{{ path('app_front_author_show', {id: author.id}) }}" class="ui basic button">{{ 'app.ui.show' | trans }}</a>
+        <a href="{{ path('app_front_author_books', {id: author.id}) }}" class="ui green basic button">{{ 'app.ui.show_books' | trans }}</a>
     </div>
 </div>
