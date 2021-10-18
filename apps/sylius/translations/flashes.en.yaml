@@ -3,9 +3,9 @@ app:
         create: The book has been created
         update: The book has been updated
         delete: The book has been deleted
-        bulk_delete: The books has been deleted
+        bulk_delete: The books have been deleted
     author:
         create: The author has been created
         update: The author has been updated
         delete: The author has been deleted
-        bulk_delete: The authors has been deleted
+        bulk_delete: The authors have been deleted
