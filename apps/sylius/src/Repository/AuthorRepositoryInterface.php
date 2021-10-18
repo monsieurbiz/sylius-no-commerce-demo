@@ -10,4 +10,6 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 interface AuthorRepositoryInterface extends RepositoryInterface
 {
     public function findByFullName(string $fullName): ?AuthorInterface;
+
+    public function findLastAuthors(int $count): array;
 }

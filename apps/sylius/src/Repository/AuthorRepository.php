@@ -24,4 +24,16 @@ class AuthorRepository extends EntityRepository implements AuthorRepositoryInter
             ->getOneOrNullResult()
         ;
     }
+
+    public function findLastAuthors(int $count): array
+    {
+        return $this
+            ->createQueryBuilder('o')
+            ->orderBy('o.createdAt', 'desc')
+            ->addOrderBy('o.id', 'desc')
+            ->setMaxResults($count)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
