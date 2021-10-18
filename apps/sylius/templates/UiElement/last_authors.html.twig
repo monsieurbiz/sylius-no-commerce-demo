@@ -1,0 +1,16 @@
+{#
+    UI Element template
+    type: last_authors
+    element fields :
+        count
+    ui_element methods:
+        authors
+#}
+{% set authors = ui_element.authors(element.count) %}
+{% if authors | length > 0 %}
+	<div class="ui three stackable cards">
+        {% for author in authors %}
+            {% include 'Author/Index/_card.html.twig' with {'autor': author} %}
+        {% endfor %}
+    </div>
+{% endif %}

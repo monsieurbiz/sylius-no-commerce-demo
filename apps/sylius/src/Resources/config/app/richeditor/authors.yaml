@@ -1,0 +1,13 @@
+monsieurbiz_sylius_richeditor:
+    ui_elements:
+        app.last_authors:
+            title: 'app.ui_element.last_authors.title'
+            description: 'app.ui_element.last_authors.description'
+            icon: user
+            classes:
+                form: App\Form\Type\UiElement\LastAuthorsType
+                ui_element: App\UiElement\LastAuthors
+            templates:
+                admin_render: '/UiElement/last_authors.html.twig'
+                front_render: '/UiElement/last_authors.html.twig'
+            tags: ['library']

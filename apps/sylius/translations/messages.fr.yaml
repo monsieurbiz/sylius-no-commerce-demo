@@ -17,3 +17,9 @@ app:
         show_books: Voir les livres
         no_book: Pas de livre
         show_author: Voir l'auteur
+    ui_element:
+        last_authors: 
+            title: Derniers Auteurs
+            description: Affiche une liste des derniers auteurs
+            field:
+                count: Nombre d'éléments à afficher

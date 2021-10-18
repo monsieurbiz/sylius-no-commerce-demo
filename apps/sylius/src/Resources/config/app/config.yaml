@@ -5,6 +5,7 @@ imports:
     - { resource: "events.yaml" }
     - { resource: "form_types.yaml" }
     - { resource: "grids.yaml" }
+    - { resource: "richeditor.yaml" }
 
 framework:
     validation:

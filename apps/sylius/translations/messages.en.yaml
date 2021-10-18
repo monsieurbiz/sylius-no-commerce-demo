@@ -17,3 +17,9 @@ app:
         show_books: Show books
         no_book: No book
         show_author: Show author
+    ui_element:
+        last_authors: 
+            title: Last authors
+            description: Show a list of last authors
+            field:
+                count: Number of elements to display
