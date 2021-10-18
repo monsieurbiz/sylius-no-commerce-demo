@@ -1,2 +1,5 @@
 app_front_author:
     resource: front/author.yaml
+
+app_front_book:
+    resource: front/book.yaml

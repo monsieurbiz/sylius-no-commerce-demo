@@ -16,3 +16,4 @@ app:
         show: Voir
         show_books: Voir les livres
         no_book: Pas de livre
+        show_author: Voir l'auteur

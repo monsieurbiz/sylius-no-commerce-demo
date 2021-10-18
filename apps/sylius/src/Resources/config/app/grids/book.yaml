@@ -62,3 +62,26 @@ sylius_grid:
                 bulk:
                     delete:
                         type: delete
+        app_front_book:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: '%app.model.book.class%'
+                    repository:
+                        method: createListQueryBuilder
+                        arguments: ["%locale%"]
+            sorting:
+                title: asc
+            fields:
+                title:
+                    type: string
+                    label: app.ui.title
+                    sortable: translation.title
+                fullName:
+                    type: string
+                    label: app.ui.author
+                    path: author.fullName
+            actions:
+                item:
+                    show:
+                        type: show

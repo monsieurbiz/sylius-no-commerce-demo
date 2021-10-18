@@ -16,3 +16,4 @@ app:
         show: Show
         show_books: Show books
         no_book: No book
+        show_author: Show author

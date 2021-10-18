@@ -1,0 +1,16 @@
+app_front_book_index:
+    path: books
+    methods: [GET]
+    defaults:
+        _controller: app.controller.book:indexAction
+        _sylius:
+            grid: app_front_book
+            template: '/Book/index.html.twig'
+
+app_book_show:
+    path: books/{id}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.book::showAction
+        _sylius:
+            template: '/Book/show.html.twig'

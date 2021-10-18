@@ -1,0 +1,18 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% import '@SyliusUi/Macro/pagination.html.twig' as pagination %}
+
+{% block title %}
+	{{ book.title }} | {{ 'app.ui.books' | trans }} | {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {% include "Book/Show/_breadcrumb.html.twig" with {'book': book} %}
+
+	<h1 class="ui header">
+		{{ book.title }}
+	</h1>
+
+    {% include 'Book/Show/_card.html.twig' with {'book': book} %}
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block title %}{{ 'app.ui.books'|trans }} | {{ parent() }}{% endblock %}
+
+{% block content %}
+    {% include "Book/Index/_breadcrumb.html.twig" %}
+
+	<h1 class="ui header">
+		{{ 'app.ui.books'|trans }}
+	</h1>
+
+    {{ sylius_grid_render(resources, '@SyliusAdmin/Grid/_default.html.twig') }}
+{% endblock %}
