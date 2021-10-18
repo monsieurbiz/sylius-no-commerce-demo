@@ -13,3 +13,6 @@ app:
         description: Description
         author: Author
         id: ID
+        show: Show
+        show_books: Show books
+        no_book: No book
