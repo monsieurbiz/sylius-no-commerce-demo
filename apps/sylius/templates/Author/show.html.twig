@@ -1,0 +1,18 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% import '@SyliusUi/Macro/pagination.html.twig' as pagination %}
+
+{% block title %}
+	{{ author.fullName }} | {{ 'app.ui.authors' | trans }} | {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {% include "Author/Show/_breadcrumb.html.twig" with {'autor': author} %}
+
+	<h1 class="ui header">
+		{{ author.fullName }}
+	</h1>
+
+    {% include 'Author/Show/_card.html.twig' with {'autor': author} %}
+
+{% endblock %}

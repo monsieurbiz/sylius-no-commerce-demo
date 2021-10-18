@@ -1,0 +1,13 @@
+<div class="ui card">
+    <div class="content">
+        <div class="header">
+            {{ author.firstname }} {{ author.lastname }}
+        </div>
+        <div class="meta">
+            {{ 'app.ui.author' | trans }}
+        </div>
+    </div>
+    <div class="extra content">
+        {{ 'sylius.ui.created_at' | trans }} : {{ author.createdAt | format_datetime() }}
+    </div>
+</div>
