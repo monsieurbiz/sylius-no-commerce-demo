@@ -1,0 +1,12 @@
+app_front_author_index:
+    path: authors
+    methods: [GET]
+    defaults:
+        _controller: app.controller.author:indexAction
+        _sylius:
+            paginate: 9
+            sortable: true
+            sorting:
+                firstName: asc
+                lastName: asc
+            template: '/Author/index.html.twig'

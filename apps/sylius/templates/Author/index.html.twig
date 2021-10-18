@@ -1,0 +1,25 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% import '@SyliusUi/Macro/pagination.html.twig' as pagination %}
+
+{% block title %}
+	{{ 'app.ui.authors'|trans }} | {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {% include "Author/Index/_breadcrumb.html.twig" %}
+
+	<h1 class="ui header">
+		{{ 'app.ui.authors'|trans }}
+	</h1>
+
+	<div class="ui three stackable cards">
+        {% for author in authors %}
+            {% include 'Author/Index/_card.html.twig' with {'autor': author} %}
+        {% endfor %}
+	</div>
+
+    <div class="ui divider hidden"></div>
+
+    {{ pagination.simple(authors) }}
+{% endblock %}
