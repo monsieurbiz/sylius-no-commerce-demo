@@ -24,7 +24,10 @@
 <div class="pusher">
     {% block top %}
         <div id="menu" class="ui large sticky inverted stackable menu">
-            {{ sylius_template_event('sylius.shop.layout.topbar') }}
+            <div class="ui right stackable inverted menu">
+                <a href="{{ path('app_front_book_index') }}" class="item">{{ 'app.ui.books' | trans }}</a>
+                <a href="{{ path('app_front_author_index') }}" class="item">{{ 'app.ui.authors' | trans }}</a>
+            </div>
         </div>
     {% endblock %}
 
