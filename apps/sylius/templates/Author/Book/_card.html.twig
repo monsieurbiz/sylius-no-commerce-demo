@@ -1,0 +1,13 @@
+<div class="ui card">
+    <div class="content">
+        <div class="header">
+            {{ book.title }}
+        </div>
+        <div class="meta">
+            {{ book.description | nl2br }}
+        </div>
+    </div>
+    <div class="extra content">
+        {{ 'sylius.ui.created_at' | trans }} : {{ book.createdAt | format_datetime() }}
+    </div>
+</div>

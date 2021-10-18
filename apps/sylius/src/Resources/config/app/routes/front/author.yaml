@@ -18,3 +18,17 @@ app_front_author_show:
         _controller: app.controller.author::showAction
         _sylius:
             template: '/Author/show.html.twig'
+
+app_front_author_books:
+    path: author/books/{id}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.book:indexAction
+        _sylius:
+            repository:
+                method: createAuthorListQueryBuilder
+                arguments:
+                    - '%locale%'
+                    - $id
+            paginate: 9
+            template: '/Author/books.html.twig'

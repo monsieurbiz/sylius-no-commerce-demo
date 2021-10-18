@@ -1,0 +1,34 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% import '@SyliusUi/Macro/pagination.html.twig' as pagination %}
+
+{% set book = books.iterator.current %}
+{% set author = book is not null ? book.author : null %}
+
+{% block title %}
+	{% if author %}{{ author.fullName}} | {% endif %}{{ 'app.ui.books'|trans }} | {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {% include "Author/Book/_breadcrumb.html.twig" with {'author': author} %}
+
+	<h1 class="ui header">
+		{% if author %}{{ author.fullName}} - {% endif %}{{ 'app.ui.books'|trans }}
+	</h1>
+
+    {% if books.count > 0 %}
+        <div class="ui three stackable cards">
+            {% for book in books %}
+                {% include 'Author/Book/_card.html.twig' with {'book': book} %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="ui  message">
+            <p>{{ 'app.ui.no_book' | trans }}</p>
+        </div>
+    {% endif %}
+
+    <div class="ui divider hidden"></div>
+
+    {{ pagination.simple(books) }}
+{% endblock %}
