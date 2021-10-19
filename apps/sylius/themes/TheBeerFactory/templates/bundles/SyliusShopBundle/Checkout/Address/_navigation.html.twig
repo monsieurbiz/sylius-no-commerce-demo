@@ -1,0 +1,20 @@
+<div class="flex flex-main-between mt-lg sm:flex-column-reverse sm:mt-md">
+    <div class="mr-sm sm:mt-sm sm:mr-n">
+        <a
+            class="btn btn--reversed sm:w-full"
+            href="{{ path('sylius_shop_homepage') }}"
+        >
+            {{ 'sylius.ui.back_to_store'|trans }}
+        </a>
+    </div>
+    <div class="ml-sm sm:ml-n">
+        <button
+            class="btn sm:w-full"
+            id="next-step"
+            type="submit"
+            {{ sylius_test_html_attribute('next-step') }}
+        >
+            {{ 'sylius.ui.next'|trans }}
+        </button>
+    </div>
+</div>

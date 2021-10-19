@@ -1,0 +1,16 @@
+{% extends '@SyliusShop/Email/layout.html.twig' %}
+
+{% block subject %}
+    Invoice generated
+{% endblock %}
+
+{% block body %}
+    {% autoescape %}
+        <p style="font-size: 16px; line-height: 1.5; color: #333333; margin: .4em 0 1.250em;">
+            Invoice with id {{ invoice.id }} was generated for order with number #{{ invoice.orderNumber }}.
+        </p>
+        <p style="font-size: 16px; line-height: 1.5; color: #333333; margin: .4em 0 1.250em;">
+            You can find the document in this email's attachments.
+        </p>
+    {% endautoescape %}
+{% endblock %}

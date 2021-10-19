@@ -1,0 +1,5 @@
+{% set value = 'sylius.ui.' ~ state %}
+
+<h5 class="h4 mt-n">
+    {{ 'sylius.ui.state'|trans }}: <span id="order-payment-status" {{ sylius_test_html_attribute('order-payment-state') }}>{{ value|trans }}</span>
+</h5>

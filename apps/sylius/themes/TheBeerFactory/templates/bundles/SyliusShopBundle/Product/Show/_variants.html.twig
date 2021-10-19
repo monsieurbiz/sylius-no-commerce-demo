@@ -1,0 +1,35 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+<table
+    class="table table--light mb-sm"
+    id="sylius-product-variants"
+    {{ sylius_test_html_attribute('product-variants') }}
+>
+    <thead>
+        <tr>
+            <th class="text-left">{{ 'sylius.ui.variant'|trans }}</th>
+            <th class="text-left">{{ 'sylius.ui.price'|trans }}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for key, variant in product.variants %}
+            <tr class="table__selectable" data-component="selectable">
+                <td>
+                    <span class="text-600">{{ variant.name }}</span>
+                    {% if product.hasOptions() %}
+                        {% for optionValue in variant.optionValues %}
+                            - {{ optionValue.value }}
+                        {% endfor %}
+                    {% endif %}
+                </td>
+                <td class="sylius-product-variant-price">
+                    {{ money.calculatePrice(variant) }}
+                </td>
+                <td class="text-right">
+                    {{ form_widget(form.cartItem.variant[key], {'label': false}) }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

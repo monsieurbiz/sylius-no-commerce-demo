@@ -1,0 +1,11 @@
+//
+// Text utilities
+// -----------------------------------------------------------------------------
+
+@if $enable-text-utilities {
+  @include text;
+
+  @if $enable-responsive-text {
+    @include responsive('text');
+  }
+}

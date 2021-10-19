@@ -1,0 +1,28 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% form_theme form '@SyliusShop/Form/theme.html.twig' %}
+
+{% block content %}
+    <div class="pr-7xl pl-7xl md:p-n sm:p-n">
+        {% include '@SyliusShop/Register/_header.html.twig' %}
+
+        {{ sylius_template_event('sylius.shop.register.after_content_header') }}
+
+        <div class="box p-lg pr-2xl pl-2xl md:p-lg sm:p-sm">
+            {{ sylius_template_event('sylius.shop.register.before_form') }}
+
+            {{ form_start(form, {'action': path('sylius_shop_register'), 'attr': {'novalidate': 'novalidate'}}) }}
+                {% include '@SyliusShop/Register/_form.html.twig' %}
+
+                {{ sylius_template_event('sylius.shop.register.form', {'form': form}) }}
+
+                <div class="mt-sm text-center">
+                    <button class="btn sm:w-full" type="submit" {{ sylius_test_html_attribute('register-button') }}>
+                        {{ 'sylius.ui.create_an_account'|trans }}
+                    </button>
+                </div>
+            {{ form_row(form._token) }}
+            {{ form_end(form, {'render_rest': false}) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{%
+    set viewOptions = {
+    cart: { color: "default" },
+    cancelled: { color: "error" },
+    shipped: { color: "success" },
+    ready: { color: "info" },
+    }
+%}
+
+{% set value = 'sylius.ui.' ~ state %}
+
+<span class="tag tag--{{ viewOptions[state]['color'] }}">
+    {{ value|trans }}
+</span>

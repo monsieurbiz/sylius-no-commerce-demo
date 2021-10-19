@@ -1,0 +1,16 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block content %}
+    <div class="flex w-full mt-md sm:flex-column sm:mt-sm" id="reviews">
+        <div class="w-1/4 md:w-1/3 pr-md sm:w-full sm:pr-n">
+            <div class="sm:w-1/2 sm:mb-sm sm:mr-auto sm:ml-auto">
+                {{ sylius_template_event('sylius.shop.product_review.index.product_box', _context) }}
+            </div>
+        </div>
+        <div class="w-3/4 md:w-2/3 sm:w-full">
+            <div class="box" id="sylius-product-reviews" {{ sylius_test_html_attribute('product-reviews') }}>
+                {{ sylius_template_event('sylius.shop.product_review.index.list', _context) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

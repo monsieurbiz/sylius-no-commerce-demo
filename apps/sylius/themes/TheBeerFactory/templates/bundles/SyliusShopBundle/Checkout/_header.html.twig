@@ -1,0 +1,16 @@
+<header class="header header--light" role="banner">
+    <div class="logo logo--sm ml-n">
+        <a href="{{ path('sylius_shop_homepage') }}">
+            <img src="{{ asset('build/themes/thebeerfactory/images/logo.svg', 'thebeerfactory-theme') }}" alt="{{ sylius.channel.name }}" />
+        </a>
+    </div>
+    {% if order.customer.id|default(null) is not null %}
+        <div class="text-600 text-xs text-tight text-right" id="purchaser-email" {{ sylius_test_html_attribute('purchaser-name-or-email') }}>
+            {{ 'sylius.ui.checking_out_as'|trans }} {{ order.customer.fullName|default(order.customer.email) }}.
+        </div>
+    {% else %}
+        <a class="btn btn--reversed pr-sm pl-sm text-no-wrap" href="{{ path('sylius_shop_login') }}">
+            {{ 'sylius.ui.sign_in'|trans }}
+        </a>
+    {% endif %}
+</header>

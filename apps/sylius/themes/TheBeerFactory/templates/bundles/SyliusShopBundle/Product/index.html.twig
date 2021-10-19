@@ -1,0 +1,13 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block content %}
+{% include '@SyliusShop/Product/Index/_header.html.twig' %}
+<div class="flex w-full md:flex-column sm:flex-column">
+    <div class="w-1/5 pr-sm md:w-full md:pr-n sm:w-full sm:pr-n">
+        {% include '@SyliusShop/Product/Index/_sidebar.html.twig' %}
+    </div>
+    <div class="w-4/5 md:w-full sm:w-full">
+        {% include '@SyliusShop/Product/Index/_main.html.twig' %}
+    </div>
+</div>
+{% endblock %}

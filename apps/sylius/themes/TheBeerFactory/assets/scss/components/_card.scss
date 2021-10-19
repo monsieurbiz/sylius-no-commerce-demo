@@ -1,0 +1,140 @@
+//
+// Card
+// -----------------------------------------------------------------------------
+
+.card {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: radius('sm');
+  box-shadow: 0 2px 8px 0 hsla(0, 0%, 0%, 0.1);
+}
+
+@media (min-width: bp('lg-min')) {
+  .card {
+    &:focus,
+    &:hover {
+      .card__picture {
+        &::before,
+        &::after {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+// Picture
+// -----------------------------------------------------------------------------
+
+.card__picture {
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+@media (min-width: bp('lg-min')) {
+  .card__picture {
+    position: relative;
+
+    &::before,
+    &::after {
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.2s ease-in-out;
+      transition-property: visibility, opacity;
+      content: '';
+    }
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: hsla(0, 0%, 0%, 0.4);
+    }
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 1;
+      padding: spacer('xs') spacer('sm');
+      color: color('white');
+      font-weight: font-weight('600');
+      border: 2px solid currentColor;
+      border-radius: radius('sm');
+      transform: translate(-50%, -50%);
+      content: attr(data-label);
+    }
+  }
+}
+
+// Content
+// -----------------------------------------------------------------------------
+
+.card__content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: spacer('sm') spacer('xs');
+  text-align: center;
+  background: color('white-dimmed');
+}
+
+@media (min-width: bp('md-min')) {
+  .card__content {
+    padding: spacer('md');
+  }
+}
+
+// Name
+// -----------------------------------------------------------------------------
+
+.card__name {
+  flex: 1 1 auto;
+  font-weight: font-weight('600');
+  font-size: font-size('sm');
+  line-height: line-height('tight');
+
+  &[href] {
+    text-decoration: none;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      content: '';
+    }
+  }
+}
+
+@media (min-width: bp('md-min')) {
+  .card__name {
+    font-size: font-size('md');
+  }
+}
+
+// Price
+// -----------------------------------------------------------------------------
+
+.card__price {
+  margin: spacer('xs') 0 0;
+  font-weight: font-weight('300');
+  font-size: font-size('md');
+}
+
+@media (min-width: bp('md-min')) {
+  .card__price {
+    font-size: font-size('lg');
+  }
+}

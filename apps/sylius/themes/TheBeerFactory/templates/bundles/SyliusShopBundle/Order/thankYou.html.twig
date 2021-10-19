@@ -1,0 +1,77 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block content %}
+    <div class="mt-lg text-center">
+        {% set lastPayment = order.payments.last() %}
+        <svg
+            class="mb-md"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="80"
+            height="80"
+        >
+            <path d="M3.67 13.49h.06a7.25 7.25 0 016.33 6.35c.06.53.65.83 1.12.56a6.75 6.75 0 003.33-5.12 9.75 9.75 0 006.04-8.49C20.55 4.68 18.87 3 16.8 3a9.76 9.76 0 00-8.53 6.04 6.75 6.75 0 00-5.16 3.42l-.02.05a.75.75 0 000 .49l.04.08a.75.75 0 00.3.32l.06.03.07.03.08.02.09.02c.28.02.57-.11.72-.38.19-.32.4-.61.65-.89-.4-.1-.8-.18-1.21-.22a.75.75 0 00-.7.3l-.04.07-.03.06-.03.07a.75.75 0 000 .5l.03.06a.75.75 0 00.36.36l.08.03.11.03zm5.16-2.99c.3-.01.58-.2.68-.5 1.1-3.15 4-5.32 7.33-5.5 1.2 0 2.21 1 2.21 2.25a8.24 8.24 0 01-5.5 7.3c-.29.1-.49.37-.5.68a5.25 5.25 0 01-1.73 3.72 8.75 8.75 0 00-6.04-6.16l-.18-.06a5.25 5.25 0 013.73-1.73zm-1.66 3.9a.75.75 0 10-.74-1.3 6.75 6.75 0 00-3.37 6.75c.04.33.3.6.64.64 2.73.36 5.4-.98 6.75-3.37a.75.75 0 00-1.3-.74 5.25 5.25 0 01-4.48 2.67H4.5c-.03-1.9.98-3.7 2.67-4.65zM14.8 7a1.75 1.75 0 110 3.5 1.75 1.75 0 010-3.5zm0 1.5a.25.25 0 100 .5.25.25 0 000-.5z"/>
+        </svg>
+        <div
+            class="mb-lg sm:mb-sm"
+            id="sylius-thank-you"
+            {{ sylius_test_html_attribute('thank-you') }}
+        >
+            <h1 class="h2 m-n">
+                {{ 'sylius.ui.thank_you'|trans }}
+            </h1>
+            <p class="m-n color-gray">
+                {{ 'sylius.ui.placed_an_order'|trans }}
+            </p>
+        </div>
+    </div>
+
+    {{ sylius_template_event('sylius.shop.order.thank_you.after_message', {'order': order}) }}
+
+    {% if lastPayment != false %}
+        {% if lastPayment.method.instructions is not null %}
+            <div
+                class="box w-1/2 mr-auto ml-auto mb-lg text-xs text-center md:w-2/3 sm:w-full"
+                id="sylius-payment-method-instructions"
+                {{ sylius_test_html_attribute('payment-method-instructions') }}
+            >
+                {{ lastPayment.method.instructions }}
+            </div>
+        {% endif %}
+    {% endif %}
+
+    {% if order.customer.user is not null %}
+        <div class="mt-lg text-center">
+            <a
+                class="btn"
+                id="sylius-show-order-in-account"
+                href="{{ path('sylius_shop_account_order_show', {'number': order.number}) }}"
+                {{ sylius_test_html_attribute('show-order-in-account') }}
+            >
+                {{ 'sylius.ui.view_order'|trans }}
+            </a>
+        </div>
+    {% else %}
+        <div class="flex flex-wrap flex-main-center w-full mt-sm">
+            <div class="mt-sm mr-xs ml-xs">
+                <a
+                    class="btn sm:w-full"
+                    id="payment-method-page"
+                    href="{{ path('sylius_shop_order_show', {'tokenValue': order.tokenValue}) }}"
+                    {{ sylius_test_html_attribute('payment-method-page') }}
+                >
+                    {{ 'sylius.ui.change_payment_method'|trans }}
+                </a>
+            </div>
+            <div class="mt-sm mr-xs ml-xs">
+                <a
+                    class="btn sm:w-full"
+                    href="{{ path('sylius_shop_register_after_checkout', {'tokenValue': order.tokenValue}) }}"
+                    {{ sylius_test_html_attribute('create-an-account') }}
+                >
+                    {{ 'sylius.ui.create_an_account'|trans }}
+                </a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'knp_menu.html.twig' %}
+
+{% set appPath = app.request.attributes.get('_route') %}
+
+{% block root %}
+    <div class="box md:mb-xs md:p-n sm:mb-xs sm:p-n">
+        {{ block('list') }}
+    </div>
+{% endblock %}
+
+{% block list %}
+    <div class="menu">
+        <button
+            class="menu__toggle"
+            type="button"
+            id="menu-toggle"
+            aria-expanded="false"
+            aria-controls="#menu-list"
+            data-component="state"
+            data-target="#menu-toggle, #menu-list"
+            data-behaviour="toggle, toggle"
+            data-state="--active, --open"
+        >
+            {{ 'app.ui.toggle_menu'|trans }}
+        </button>
+        <ul class="menu__list" id="menu-list">
+            {% for item in item.children %}
+                {% set itemPath = item.extras.routes[0].route %}
+                <li class="menu__item{% if appPath == itemPath %} --active{% endif %}">
+                    {{ block('item') }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block item %}
+    <a class="menu__element" href="{{ item.uri }}">
+        {{ item.label|trans }}
+    </a>
+{% endblock %}

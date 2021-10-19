@@ -1,0 +1,76 @@
+{% extends '@SyliusShop/Account/layout.html.twig' %}
+
+{% form_theme form '@SyliusShop/Form/theme.html.twig' %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a class="breadcrumb__link" href="{{ path('sylius_shop_homepage') }}" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                <span itemprop="name">{{ 'sylius.ui.home'|trans }}</span>
+            </a>
+            <meta itemprop="position" content="1">
+        </li>
+        <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a class="breadcrumb__link" href="{{ path('sylius_shop_account_dashboard') }}" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                <span itemprop="name">{{ 'sylius.ui.my_account'|trans }}</span>
+            </a>
+            <meta itemprop="position" content="2">
+        </li>
+        <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <strong class="breadcrumb__current" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                <span itemprop="name">{{ 'sylius.ui.personal_information'|trans }}</span>
+            </strong>
+            <meta itemprop="position" content="3">
+        </li>
+    </ol>
+{% endblock %}
+
+{% block subcontent %}
+    {{ form_start(form, {'action': path('sylius_shop_account_profile_update'), 'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="mb-lg">
+            <h2 class="h2 mt-n mb-xs">
+                {{ 'sylius.ui.your_profile'|trans }}
+            </h2>
+            <p class="m-n">{{ 'sylius.ui.edit_your_personal_information'|trans }}</p>
+        </div>
+
+        {{ sylius_template_event('sylius.shop.account.profile.update.after_content_header', {'customer': customer, 'form': form}) }}
+
+        <input type="hidden" name="_method" value="PUT" />
+
+        <div class="flex w-full mb-sm sm:flex-column sm:mb-n">
+            <div class="w-1/2 pr-xs sm:w-full sm:mb-sm sm:p-n">
+                {{ form_row(form.firstName, sylius_test_form_attribute('first-name')) }}
+            </div>
+            <div class="w-1/2 pl-xs sm:w-full sm:mb-sm sm:p-n">
+                {{ form_row(form.lastName, sylius_test_form_attribute('last-name')) }}
+            </div>
+        </div>
+        <div class="mb-sm">
+            {{ form_row(form.email, sylius_test_form_attribute('email')) }}
+        </div>
+        <div class="flex w-full mb-sm sm:flex-column sm:mb-n">
+            <div class="w-1/2 pr-xs sm:w-full sm:mb-sm sm:p-n">
+                {{ form_row(form.birthday) }}
+            </div>
+            <div class="w-1/2 pl-xs sm:w-full sm:mb-sm sm:p-n">
+                {{ form_row(form.gender) }}
+            </div>
+        </div>
+        <div class="flex w-full mb-sm sm:flex-column sm:mb-n">
+            <div class="w-1/2 pr-xs sm:w-full sm:mb-sm sm:p-n">
+                {{ form_row(form.phoneNumber) }}
+            </div>
+        </div>
+        <div class="mb-sm">
+            {{ form_row(form.subscribedToNewsletter, sylius_test_form_attribute('subscribnewsletter')) }}
+        </div>
+
+        {{ sylius_template_event('sylius.shop.account.profile.update.form', {'customer': customer, 'form': form}) }}
+
+        <button class="btn mt-sm" type="submit" {{ sylius_test_html_attribute('savchanges') }}>
+            {{ 'sylius.ui.save_changes'|trans }}
+        </button>
+        {{ form_row(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
+{% endblock %}

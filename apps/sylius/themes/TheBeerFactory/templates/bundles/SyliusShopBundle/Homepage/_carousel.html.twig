@@ -1,0 +1,22 @@
+<div class="carousel-wrapper mb-xl sm:mb-md">
+    <div class="carousel">
+        {% for product in products %}
+            <div class="carousel-item">
+                {% include '@SyliusShop/Product/_box.html.twig' %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="carousel-nav">
+        <button class="carousel-left  button">
+            <span class="visually-hidden">
+                {{ 'sylius.ui.previous'|trans }}
+            </span>
+        </button>
+        <button class="carousel-right  button">
+            <span class="visually-hidden">
+                {{ 'sylius.ui.next'|trans }}
+            </span>
+        </button>
+    </div>
+</div>

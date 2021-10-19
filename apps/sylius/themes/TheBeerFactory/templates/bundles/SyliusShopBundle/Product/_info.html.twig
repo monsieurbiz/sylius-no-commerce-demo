@@ -1,0 +1,50 @@
+{% set product = variant.product %}
+
+<div class="flex flex-cross-start w-full">
+    <div class="flex-item-none pr-sm">
+        {% if variant.hasImages %}
+            {% include '@SyliusShop/Product/_mainImage.html.twig' with {'product': variant, 'filter': 'sylius_shop_product_tiny_thumbnail'} %}
+        {% else %}
+            {% include '@SyliusShop/Product/_mainImage.html.twig' with {'product': product, 'filter': 'sylius_shop_product_tiny_thumbnail'} %}
+        {% endif %}
+    </div>
+    <div class="flex-item-fluid">
+        <h4
+            class="h4 m-n sylius-product-name"
+            {{ sylius_test_html_attribute('product-name', item.productName) }}
+        >
+            {{ item.productName }}
+        </h4>
+        <span
+            class="text-xs color-gray sylius-product-variant-code"
+            {{ sylius_test_html_attribute('product-variant-code') }}
+        >
+            {{ variant.code }}
+        </span>
+        {% if product.hasOptions() %}
+            <ul
+                class="list-unstyled flex flex-wrap w-full mt-xxs sylius-product-options"
+                {{ sylius_test_html_attribute('product-options') }}
+            >
+                {% for optionValue in variant.optionValues %}
+                    <li
+                        class="tag tag--light mt-xxs"
+                        data-sylius-option-name="{{ optionValue.name }}"
+                        {{ sylius_test_html_attribute('option-name', optionValue.name) }}
+                    >
+                        {{ optionValue.value }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% elseif item.variantName is not null %}
+            <ul class="list-unstyled flex flex-wrap w-full mt-xxs">
+                <li
+                    class="tag tag--light mt-xxs sylius-product-variant-name"
+                    {{ sylius_test_html_attribute('product-variant-name') }}
+                >
+                    {{ item.variantName }}
+                </li>
+            </ul>
+        {% endif %}
+    </div>
+</div>

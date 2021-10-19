@@ -1,0 +1,47 @@
+{{ sylius_template_event('sylius.shop.product.index.before_vertical_menu', {'taxon': taxon}) }}
+
+<div class="box p-sm md:mb-sm md:p-n sm:mb-sm sm:p-n">
+    <div class="menu">
+        <button
+            class="menu__toggle"
+            type="button"
+            id="menu-toggle"
+            aria-expanded="false"
+            aria-controls="#menu-list"
+            data-component="state"
+            data-target="#menu-toggle, #menu-list"
+            data-behaviour="toggle, toggle"
+            data-state="--active, --open"
+        >
+            {{ taxon.name }}
+        </button>
+        <ul class="menu__list" id="menu-list">
+            <li class="menu__item --active">
+                <span class="menu__element">
+                    {{ taxon.name }}
+                </span>
+            </li>
+            {% for child in taxon.children %}
+                <li class="menu__item">
+                    <a
+                        class="menu__element"
+                        href="{{ path('sylius_shop_product_index', {'slug': child.slug, '_locale': child.translation.locale}) }}"
+                    >
+                        {{ child.name }}
+                    </a>
+                </li>
+            {% endfor %}
+            {% if taxon.parent is not empty and not taxon.parent.isRoot() %}
+                <li class="menu__item">
+                    <a
+                        class="menu__element"
+                        href="{{ path('sylius_shop_product_index', {'slug': taxon.parent.slug, '_locale': taxon.parent.translation.locale}) }}"
+                    >
+                        {{ 'sylius.ui.go_level_up'|trans }}
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{{ sylius_template_event('sylius.shop.product.index.after_vertical_menu', {'taxon': taxon}) }}

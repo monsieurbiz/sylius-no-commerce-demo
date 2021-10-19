@@ -1,0 +1,11 @@
+//
+// Print
+// -----------------------------------------------------------------------------
+
+@if $enable-print-utilities {
+  @media print {
+    .print-hidden {
+      display: none !important;
+    }
+  }
+}

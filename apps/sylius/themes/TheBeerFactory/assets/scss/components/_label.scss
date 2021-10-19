@@ -1,0 +1,199 @@
+//
+// Label
+// -----------------------------------------------------------------------------
+
+.label {
+  display: block;
+  padding: 0 0 spacer('xs');
+  font-size: font-size('xs');
+  line-height: 1.2;
+}
+
+// If the class can't be applied
+// -----------------------------------------------------------------------------
+
+.field {
+  label:not([class]) {
+    @extend .label;
+  }
+}
+
+// Radio buttons and checkboxes
+// -----------------------------------------------------------------------------
+
+.label--radio,
+.label--checkbox {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0 0 0 2.6rem;
+  font-size: inherit;
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    top: 0.2rem;
+    left: 0;
+    width: 1.6rem;
+    height: 1.6rem;
+    background: color('white');
+    border: 1px solid color('gray-dark');
+    content: '';
+  }
+
+  input:focus + & {
+    outline: 1px dashed color('gray-light');
+    outline-offset: 0.15em;
+  }
+
+  input:checked + &::after {
+    position: absolute;
+    content: '';
+  }
+}
+
+.label--checkbox {
+  &::before {
+    border-radius: 2px;
+  }
+
+  &::after {
+    top: 1.1rem;
+    left: 0.3rem;
+    width: 0.5rem;
+    height: 1rem;
+    border-color: color('primary');
+    border-style: solid;
+    border-width: 0.2rem 0.2rem 0 0;
+    transform: scaleX(-1) rotate(135deg);
+    transform-origin: left top;
+  }
+
+  input:checked + &::after {
+    animation: draw 0.25s ease 1;
+  }
+}
+
+.label--radio {
+  &::before,
+  &::after {
+    border-radius: radius('full');
+  }
+
+  &::after {
+    top: 0.45rem;
+    left: 0.3rem;
+    width: 1rem;
+    height: 1rem;
+    background-color: color('primary');
+  }
+
+  input:checked + &::after {
+    animation: pop 0.25s ease-in-out 1;
+  }
+}
+
+// Switch
+// -----------------------------------------------------------------------------
+
+.label--switch {
+  position: relative;
+  display: inline-block;
+  padding: 0.4rem 0 0.4rem 5rem;
+  font-size: font-size('sm');
+  vertical-align: top;
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    content: '';
+  }
+
+  &::before {
+    width: 4rem;
+    height: 2rem;
+    background: color('white');
+    border: 1px solid color('gray-dark');
+    border-radius: 1rem;
+    transition: background-color 0.1s ease-in-out;
+  }
+
+  &::after {
+    left: 0.2rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    background: color('gray-dark');
+    border-radius: 50%;
+    transition: background-color 0.1s ease-in-out,
+      transform 0.3s cubibezier(0.45, -0.15, 0.1, 1.15);
+  }
+
+  input:checked + & {
+    &::before {
+      background-color: color('gray-dark');
+    }
+
+    &::after {
+      background-color: color('white');
+      transform: translate(2rem, -50%);
+    }
+  }
+
+  input:focus + & {
+    outline: 1px dashed color('gray-light');
+    outline-offset: 0.15em;
+  }
+}
+
+// Animations
+// -----------------------------------------------------------------------------
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    transform: scale(0.5);
+    opacity: 0.25;
+  }
+
+  75% {
+    transform: scale(1.25);
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes draw {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+
+  20% {
+    width: 0.5rem;
+    height: 0;
+    opacity: 1;
+  }
+
+  40% {
+    width: 0.5rem;
+    height: 1rem;
+    opacity: 1;
+  }
+
+  100% {
+    width: 0.5rem;
+    height: 1rem;
+    opacity: 1;
+  }
+}

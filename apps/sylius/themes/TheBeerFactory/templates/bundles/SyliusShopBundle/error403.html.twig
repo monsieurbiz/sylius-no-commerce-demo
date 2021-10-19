@@ -1,0 +1,12 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block content %}
+    <div class="mt-lg text-center sm:mt-sm">
+        <svg class="mb-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="72" height="72">
+            <path d="M12 1c1.11 0 2.14.57 2.73 1.5l.1.17 8.93 15.64a3.25 3.25 0 01-2.67 4.44l-.2.02H3.06A3.25 3.25 0 01.2 18.42l.07-.2L9.16 2.67A3.25 3.25 0 0112 1zm0 1.41c-.62 0-1.2.31-1.53.82l-.08.14-8.85 15.47a1.83 1.83 0 001.44 2.5l.16.02h17.7a1.86 1.86 0 001.7-2.3l-.05-.14L13.6 3.36A1.83 1.83 0 0012 2.4zm0 12.6a.7.7 0 01.7.6v.74a.7.7 0 01-1.4.1l-.01-.1v-.63c0-.4.32-.71.7-.71zm0-6.35a.7.7 0 01.7.61v2.64a.7.7 0 01-1.4.1l-.01-.1V9.37c0-.4.32-.71.7-.71z"/>
+        </svg>
+        <h1 class="h2 mt-n sm:text-xl">
+            {{ 'sylius.ui.the_page_you_are_looking_for_is_forbidden'|trans }}
+        </h1>
+    </div>
+{% endblock %}

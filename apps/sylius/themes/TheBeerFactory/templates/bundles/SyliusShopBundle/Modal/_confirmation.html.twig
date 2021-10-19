@@ -1,0 +1,29 @@
+<div
+    class="dialog dialog--alert"
+    id="confirmation-dialog"
+    aria-modal="true"
+    aria-hidden="true"
+>
+    <div class="dialog__inner" data-dialog="inner">
+        <strong class="h2 block mt-n mb-md">
+            {{ 'sylius.ui.confirm_your_action'|trans }}
+        </strong>
+        <p>{{ 'sylius.ui.are_your_sure_you_want_to_perform_this_action'|trans }}</p>
+        <div class="flex flex-item-fluid flex-main-end mt-lg">
+            <button
+                class="btn btn--reversed"
+                type="button"
+                data-dialog="close"
+            >
+                {{ 'sylius.ui.no_label'|trans }}
+            </button>
+            <button
+                class="btn ml-sm"
+                type="button"
+                data-dialog="confirm"
+            >
+                {{ 'sylius.ui.yes_label'|trans }}
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="mb-lg">
+    <h2 class="h2 mt-n mb-xs">
+        {{ 'sylius.ui.order_history'|trans }}
+    </h2>
+    <p class="m-n">{{ 'sylius.ui.browse_your_orders_from_the_past'|trans }}</p>
+
+    {{ sylius_template_event('sylius.shop.account.order.index.header.content', {'orders': orders}) }}
+</div>

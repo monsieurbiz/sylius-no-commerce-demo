@@ -1,0 +1,95 @@
+<ol class="breadcrumb mb-lg sm:mb-sm" itemscope itemtype="http://schema.org/BreadcrumbList">
+    <li
+        class="breadcrumb__item"
+        itemprop="itemListElement"
+        itemscope
+        itemtype="http://schema.org/ListItem"
+    >
+        <a
+            class="breadcrumb__link"
+            href="{{ path('sylius_shop_homepage') }}"
+            itemscope
+            itemtype="http://schema.org/Thing"
+            itemprop="item"
+        >
+            <span itemprop="name">{{ 'sylius.ui.home'|trans }}</span>
+        </a>
+    </li>
+    {% if product.mainTaxon is not null %}
+        {% set taxon = product.mainTaxon %}
+        {% set ancestors = taxon.ancestors|reverse %}
+
+        {% for ancestor in ancestors %}
+            {% if ancestor.isRoot() %}
+                <li
+                    class="breadcrumb__item"
+                    itemprop="itemListElement"
+                    itemscope
+                    itemtype="http://schema.org/ListItem"
+                >
+                    <span
+                        itemscope
+                        itemtype="http://schema.org/Thing"
+                        itemprop="item"
+                    >
+                        <span itemprop="name">
+                            {{ ancestor.name }}
+                        </span>
+                    </span>
+                </li>
+            {% else %}
+                <li
+                    class="breadcrumb__item"
+                    itemprop="itemListElement"
+                    itemscope itemtype="http://schema.org/ListItem"
+                >
+                    <a
+                        class="breadcrumb__link"
+                        href="{{ path('sylius_shop_product_index', {'slug': ancestor.slug, '_locale': ancestor.translation.locale}) }}"
+                        itemscope
+                        itemtype="http://schema.org/Thing"
+                        itemprop="item"
+                    >
+                        <span itemprop="name">
+                            {{ ancestor.name }}
+                        </span>
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        <li
+            class="breadcrumb__item"
+            itemprop="itemListElement"
+            itemscope itemtype="http://schema.org/ListItem"
+        >
+            <a
+                class="breadcrumb__link"
+                href="{{ path('sylius_shop_product_index', {'slug': taxon.slug, '_locale': taxon.translation.locale}) }}"
+                itemscope
+                itemtype="http://schema.org/Thing"
+                itemprop="item"
+            >
+                <span itemprop="name">
+                    {{ taxon.name }}
+                </span>
+            </a>
+        </li>
+    {% endif %}
+    <li
+        class="breadcrumb__item"
+        itemprop="itemListElement"
+        itemscope
+        itemtype="http://schema.org/ListItem"
+    >
+        <strong
+            class="breadcrumb__current"
+            itemscope
+            itemtype="http://schema.org/Thing"
+            itemprop="item"
+        >
+            <span itemprop="name">
+                {{ product.name }}
+            </span>
+        </strong>
+    </li>
+</ol>

@@ -1,0 +1,22 @@
+<div class="mb-md sm:mb-sm" {{ sylius_test_html_attribute('comment', review.comment) }}>
+    <div class="flex flex-wrap flex-cross-center w-full mb-xs">
+        <a class="text-600 text-md text-tight text-no-decoration mr-xs">
+            {{ review.author.firstName }}
+        </a>
+        <div class="color-gray text-xs mr-xs">
+            <strong>{{ review.title }}</strong>
+        </div>
+        <div class="color-gray text-xs mr-xs">
+            {{ review.createdAt|format_date }}
+        </div>
+        <div
+            class="ui star rating"
+            data-rating="{{ review.rating }}"
+            data-max-rating="5"
+            style="pointer-events: none;"
+        ></div>
+    </div>
+    <div class="sm:text-xs">
+        {{ review.comment }}
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|slice(0, 2) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta httequiv="X-UA-Compatible" content="IE=edge">
+
+        <title>{% block title %}{{ sylius.channel.name }}{% endblock %}</title>
+
+        <meta name="viewport" content="width=device-width initial-scale=1" />
+
+        {% block metatags %}
+        {% endblock %}
+
+        {% block stylesheets %}
+            {{ sylius_template_event('sylius.shop.layout.stylesheets') }}
+        {% endblock %}
+
+        {{ sylius_template_event('sylius.shop.layout.head') }}
+    </head>
+
+    <body class="{% block body_class %}page{% endblock %}">
+        <div class="page__container">
+            {{ sylius_template_event('sylius.shop.layout.before_body') }}
+
+            {% block top %}
+                <div class="top">
+                    {{ sylius_template_event('sylius.shop.layout.topbar') }}
+                </div>
+            {% endblock %}
+
+            {% block header %}
+                <header class="header" role="banner">
+                    {{ sylius_template_event('sylius.shop.layout.header') }}
+                </header>
+            {% endblock %}
+
+            <div class="page__content">
+                {% block breadcrumb %}
+                {% endblock %}
+
+                {% include '@SyliusShop/_flashes.html.twig' %}
+
+                {{ sylius_template_event('sylius.shop.layout.before_content') }}
+
+                {% block content %}
+                {% endblock %}
+
+                {{ sylius_template_event('sylius.shop.layout.after_content') }}
+            </div>
+
+            {% block footer %}
+                {% include '@SyliusShop/_footer.html.twig' %}
+            {% endblock %}
+        </div>
+
+        {% block javascripts %}
+            {{ sylius_template_event('sylius.shop.layout.javascripts') }}
+        {% endblock %}
+
+        {% include '@SyliusShop/Modal/_confirmation.html.twig' %}
+        {{ sylius_template_event('sylius.shop.layout.after_body') }}
+    </body>
+</html>

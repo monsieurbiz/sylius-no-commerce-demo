@@ -1,0 +1,71 @@
+{% if active is not defined or active == 'address' %}
+    {% set steps = {'address': 'steps__item--active', 'select_shipping': 'steps__item--disabled', 'select_payment': 'steps__item--disabled', 'complete': 'steps__item--disabled'} %}
+{% elseif active == 'select_shipping' %}
+    {% set steps = {'address': 'steps__item--completed', 'select_shipping': 'steps__item--active', 'select_payment': 'steps__item--disabled', 'complete': 'steps__item--disabled'} %}
+{% elseif active == 'select_payment' %}
+    {% set steps = {'address': 'steps__item--completed', 'select_shipping': 'steps__item--completed', 'select_payment': 'steps__item--active', 'complete': 'steps__item--disabled'} %}
+{% else %}
+    {% set steps = {'address': 'steps__item--completed', 'select_shipping': 'steps__item--completed', 'select_payment': 'steps__item--completed', 'complete': 'steps__item--active'} %}
+{% endif %}
+
+{% set order_requires_payment = sylius_is_payment_required(order) %}
+{% set order_requires_shipping = sylius_is_shipping_required(order) %}
+
+<div class="steps">
+    <a class="steps__item {{ steps['address'] }}" href="{{ path('sylius_shop_checkout_address') }}" {{ sylius_test_html_attribute('step-address') }}>
+        <svg class="steps__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M14.65 20.5a.99.99 0 01-.12-.03.77.77 0 01-.12-.05l.1.04a.75.75 0 01-.08-.03h-.02l-5.66-2.84-5.66 2.83A.75.75 0 012 19.75V6.77a.75.75 0 01.22-.55l.07-.06.14-.09L8.4 3.08a.75.75 0 01.1-.04h.02A.71.71 0 018.88 3a.72.72 0 01.2.07l-.1-.04.1.04 5.67 2.83 5.66-2.83a.75.75 0 011.09.67v13c0 .29-.16.54-.41.67l-6 3a.75.75 0 01-.1.04h-.02a.7.7 0 01-.22.04h-.1zM8 4.95L3.5 7.21v11.33L8 16.29V4.96zm1.5 0V16.3l4.5 2.25V7.2L9.5 4.96zm10.5 0l-4.5 2.25v11.33l4.5-2.25V4.96z"/>
+        </svg>
+        <div class="steps__content">
+            <div class="steps__title">
+                {{ 'sylius.ui.address'|trans }}
+            </div>
+            <div class="steps__description">
+                {{ 'sylius.ui.fill_in_your_billing_and_shipping_addresses'|trans }}
+            </div>
+        </div>
+    </a>
+    {% if order_requires_shipping %}
+        <a class="steps__item {{ steps['select_shipping'] }}" href="{{ path('sylius_shop_checkout_select_shipping') }}" {{ sylius_test_html_attribute('step-shipping') }}>
+            <svg class="steps__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12.75 4c.39 0 .71.3.75.68V5h4.25c.24 0 .46.11.6.3l.04.06 3.01 5.02.04.07.02.06.02.08.01.07.01.09v6c0 .39-.3.71-.68.75H19.4a2.75 2.75 0 01-5.3 0H9.4a2.75 2.75 0 01-5.3 0H2.75a.75.75 0 01-.75-.68V5.75c0-.93.73-1.7 1.65-1.75h9.1zm-6 11.5c-.69 0-1.25.55-1.25 1.24v.14a1.25 1.25 0 101.25-1.38zm10 0a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5zm3.25-4h-6.5V16h.6a2.75 2.75 0 015.3 0h.6v-4.5zm-8-6H3.75a.25.25 0 00-.25.2V16h.6a2.75 2.75 0 015.3 0H12V5.5zm5.33 1H13.5V10h5.92l-2.1-3.5z"/>
+            </svg>
+            <div class="steps__content">
+                <div class="steps__title">
+                    {{ 'sylius.ui.shipping'|trans }}
+                </div>
+                <div class="steps__description">
+                    {{ 'sylius.ui.choose_how_your_goods_will_be_delivered'|trans }}
+                </div>
+            </div>
+        </a>
+    {% endif %}
+    {% if order_requires_payment %}
+        <a class="steps__item {{ steps['select_payment'] }}" href="{{ path('sylius_shop_checkout_select_payment') }}" {{ sylius_test_html_attribute('step-payment') }}>
+            <svg class="steps__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M17.75 4a3.75 3.75 0 013.75 3.75v8a3.75 3.75 0 01-3.75 3.75h-12A3.75 3.75 0 012 15.75v-8A3.75 3.75 0 015.75 4h12zM20 10.5H3.5v5.25c0 1.24 1 2.25 2.25 2.25h12c1.24 0 2.25-1 2.25-2.25V10.5zM6.75 14h.08a.75.75 0 01-.07 1.5h-.01a.75.75 0 110-1.5zm6 0a.75.75 0 110 1.5h-2a.75.75 0 110-1.5zm5-8.5h-12c-1.24 0-2.25 1-2.25 2.25V9H20V7.75c0-1.24-1-2.25-2.25-2.25z"/>
+            </svg>
+            <div class="steps__content">
+                <div class="steps__title">
+                    {{ 'sylius.ui.payment'|trans }}
+                </div>
+                <div class="steps__description">
+                    {{ 'sylius.ui.choose_how_you_will_pay'|trans }}
+                </div>
+            </div>
+        </a>
+    {% endif %}
+    <div class="steps__item {{ steps['complete'] }}" href="{{ path('sylius_shop_checkout_complete') }}">
+        <svg class="steps__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M4.23 4.64a5.75 5.75 0 018.04 0l.11.1a4.25 4.25 0 005.85-.1l-.01.01a.75.75 0 01.53-.22h-.08.08a.76.76 0 01.42.13c.04.02.08.06.12.1l-.08-.08a.75.75 0 01.29.6V5.1v9.07a.76.76 0 01-.12.4.75.75 0 01-.1.13l.07-.07a5.75 5.75 0 01-8.12.08l-.11-.1a4.25 4.25 0 00-5.62-.11v6.67a.75.75 0 01-1.5 0v-16a.76.76 0 01.1-.37.76.76 0 01.12-.16zm6.89.97a4.25 4.25 0 00-5.62-.1v7.19a5.75 5.75 0 016.78.94l.1.1a4.25 4.25 0 005.62.1V6.67a5.75 5.75 0 01-6.78-.95z"/>
+        </svg>
+        <div class="steps__content">
+            <div class="steps__title">
+                {{ 'sylius.ui.complete'|trans }}
+            </div>
+            <div class="steps__description">
+                {{ 'sylius.ui.review_and_confirm_your_order'|trans }}
+            </div>
+        </div>
+    </div>
+</div>

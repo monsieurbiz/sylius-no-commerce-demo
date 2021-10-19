@@ -1,0 +1,8 @@
+{% macro default(header, icon, subheader) %}
+    <h1 class="h1 mt-n mb-xs">
+        {{ header }}
+    </h1>
+    {% if subheader is not empty %}
+        <p class="m-n">{{ subheader }}</p>
+    {% endif %}
+{% endmacro %}

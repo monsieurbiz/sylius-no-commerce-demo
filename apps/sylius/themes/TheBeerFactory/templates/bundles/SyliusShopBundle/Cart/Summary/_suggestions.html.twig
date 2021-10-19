@@ -1,0 +1,6 @@
+<div class="mt-6xl sm:mt-2xl">
+    <h4 class="h2 mt-n mb-lg text-center">
+        {{ 'sylius.ui.you_may_also_like'|trans }}
+    </h4>
+    {{ render(url('sylius_shop_partial_product_index_latest', {'count': 4, 'template': '@SyliusShop/Product/_horizontalList.html.twig'})) }}
+</div>

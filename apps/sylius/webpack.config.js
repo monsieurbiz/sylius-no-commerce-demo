@@ -5,6 +5,9 @@ const syliusBundles = path.resolve(__dirname, 'vendor/sylius/sylius/src/Sylius/B
 const uiBundleScripts = path.resolve(syliusBundles, 'UiBundle/Resources/private/js/');
 const uiBundleResources = path.resolve(syliusBundles, 'UiBundle/Resources/private/');
 
+// Theme config
+const theBeerFactoryThemeConfig = require('./themes/TheBeerFactory/webpack.config');
+
 // Shop config
 Encore
   .setOutputPath('public/build/shop/')
@@ -44,4 +47,4 @@ adminConfig.resolve.alias['sylius/bundle'] = syliusBundles;
 adminConfig.externals = Object.assign({}, adminConfig.externals, { window: 'window', document: 'document' });
 adminConfig.name = 'admin';
 
-module.exports = [shopConfig, adminConfig];
+module.exports = [theBeerFactoryThemeConfig, shopConfig, adminConfig];

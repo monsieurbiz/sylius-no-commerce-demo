@@ -1,0 +1,22 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block content %}
+    <h1 class="h1 mt-md mb-sm md:mt-sm sm:mt-sm">
+        {{ 'sylius.ui.my_account'|trans }}
+    </h1>
+    <div class="flex w-full md:flex-column sm:flex-column">
+        <div class="w-1/4 lg:w-1/3 pr-md md:w-full md:pr-n sm:w-full sm:pr-n">
+            {{ sylius_template_event('sylius.shop.account.layout.menu') }}
+        </div>
+        <div class="w-3/4 lg:w-2/3 md:w-full sm:w-full">
+            {{ sylius_template_event('sylius.shop.account.layout.before_subcontent') }}
+
+            <div class="box">
+                {% block subcontent %}
+                {% endblock %}
+            </div>
+
+            {{ sylius_template_event('sylius.shop.account.layout.after_subcontent') }}
+        </div>
+    </div>
+{% endblock %}

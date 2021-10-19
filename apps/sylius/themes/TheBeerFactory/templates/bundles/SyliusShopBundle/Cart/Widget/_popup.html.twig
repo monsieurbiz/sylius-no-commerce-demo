@@ -1,0 +1,38 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+{% if cart.empty %}
+    <span class="cart-preview__empty">
+        {{ 'sylius.ui.your_cart_is_empty'|trans }}.
+    </span>
+{% else %}
+    <div class="cart-preview__products">
+        <ul class="cart-preview__list">
+            {% for item in cart.items %}
+                <li class="cart-preview__item">
+                    <div class="cart-preview__label">
+                        {{ item.quantity }} x <strong>{{ item.product }}</strong>
+                    </div>
+                    <div class="cart-preview__amount">
+                        {{ money.convertAndFormat(item.unitPrice) }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="cart-preview__total">
+        <div class="cart-preview__label text-right">
+            <strong>{{ 'sylius.ui.subtotal'|trans }}</strong>
+        </div>
+        <div class="cart-preview__amount">
+            {{ money.convertAndFormat(cart.itemsTotal) }}
+        </div>
+    </div>
+    <div class="cart-preview__actions">
+        <a class="btn btn--reversed w-full" href="{{ path('sylius_shop_cart_summary') }}">
+            {{ 'sylius.ui.view_and_edit_cart'|trans }}
+        </a>
+        <a class="btn w-full" href="{{ path('sylius_shop_checkout_start') }}">
+            {{ 'sylius.ui.checkout'|trans }}
+        </a>
+    </div>
+{% endif %}

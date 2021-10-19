@@ -1,0 +1,19 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+<button
+    class="cart-preview__toggle"
+    id="sylius-cart-button"
+    type="button"
+    aria-expanded="false"
+    aria-controls="#cart-preview-popup"
+    data-component="dropdown"
+    data-target="#cart-preview-popup"
+    data-fixed="sm, md"
+>
+    {{
+        sylius_template_event("sylius.shop.cart.widget.button", { cart: cart })
+    }}
+</button>
+<div class="cart-preview__popup" id="cart-preview-popup">
+    {{ sylius_template_event("sylius.shop.cart.widget.popup", { cart: cart }) }}
+</div>

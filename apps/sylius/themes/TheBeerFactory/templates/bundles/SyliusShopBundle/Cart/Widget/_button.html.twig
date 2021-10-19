@@ -1,0 +1,7 @@
+{{ 'app.ui.cart'|trans }}
+
+{% if cart.items|length > 0 %}
+    <span class="cart-preview__count">
+        {{ cart.items|length }}
+    </span>
+{% endif %}

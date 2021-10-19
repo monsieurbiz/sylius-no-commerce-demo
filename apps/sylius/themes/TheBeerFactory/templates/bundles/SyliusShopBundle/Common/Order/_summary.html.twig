@@ -1,0 +1,11 @@
+{% include '@SyliusShop/Common/Order/_addresses.html.twig' %}
+{% include '@SyliusShop/Common/Order/_table.html.twig' %}
+
+<div class="grid grid-cols-2 gap-sm mt-md sm:grid-cols-1">
+    <div class="box box--bordered flex flex-cross-center flex-item-fluid p-sm" id="sylius-payments">
+        {% include '@SyliusShop/Common/Order/_payments.html.twig' %}
+    </div>
+    <div class="box box--bordered flex flex-cross-center flex-item-fluid p-sm" id="sylius-shipments">
+        {% include '@SyliusShop/Common/Order/_shipments.html.twig' %}
+    </div>
+</div>

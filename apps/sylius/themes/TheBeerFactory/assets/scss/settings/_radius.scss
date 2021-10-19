@@ -1,0 +1,16 @@
+//
+// Radius
+// -----------------------------------------------------------------------------
+
+@if $enable-root {
+  :root {
+    --radius-sm: 0.4rem;
+    --radius-md: 0.9rem;
+  }
+}
+
+$radius-map: (
+  'sm': var(--radius-sm),
+  'md': var(--radius-md),
+  'full': 50em,
+);

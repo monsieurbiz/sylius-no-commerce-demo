@@ -1,0 +1,69 @@
+//
+// Tabs
+// -----------------------------------------------------------------------------
+
+// Menu
+// -----------------------------------------------------------------------------
+
+.tabs__menu {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 0 spacer('sm');
+
+  a {
+    display: block;
+    padding: spacer('xxs') 0;
+    font-weight: font-weight('600');
+    font-size: font-size('md');
+    color: color('gray');
+    text-decoration: none;
+    cursor: pointer;
+
+    &:focus,
+    &:hover {
+      color: color('gray-dark');
+    }
+
+    &:not(:last-child) {
+      margin-right: spacer('md');
+    }
+
+    &.active {
+      color: color('primary');
+    }
+  }
+}
+
+@media (min-width: bp('md-min')) {
+  .tabs__menu {
+    a {
+      &:not(:last-child) {
+        margin-right: spacer('xl');
+      }
+    }
+  }
+}
+
+
+@media (min-width: bp('lg-min')) {
+  .tabs__menu {
+    a {
+      &:not(:last-child) {
+        margin-right: spacer('2xl');
+      }
+    }
+  }
+}
+
+// Section
+// -----------------------------------------------------------------------------
+
+.tabs__section {
+  display: none;
+  margin: 0 0 spacer('xs');
+
+  &.active {
+    display: block;
+  }
+}

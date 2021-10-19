@@ -1,0 +1,17 @@
+<div class="flex flex-wrap flex-cross-center w-full mb-md sm:mb-sm">
+    <div class="mr-sm">
+        {% include '@SyliusShop/Product/_starRating.html.twig' %}
+    </div>
+    <a
+        class="color-gray text-no-decoration mr-sm"
+        href="{{ path('sylius_shop_product_review_index', {'slug': product.slug, '_locale': product.translation.locale}) }}"
+    >
+        {{ 'sylius.ui.review'|trans({'%count%': product.acceptedReviews|length}) }}
+    </a>
+    <a
+        class="color-gray text-no-decoration"
+        href="{{ path('sylius_shop_product_review_create', {'slug': product.slug, '_locale': product.translation.locale}) }}"
+    >
+        {{ 'sylius.ui.add_your_review'|trans }}
+    </a>
+</div>

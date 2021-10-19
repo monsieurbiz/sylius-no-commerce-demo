@@ -1,0 +1,616 @@
+//
+// Mixins
+// -----------------------------------------------------------------------------
+
+// Font-face
+// -----------------------------------------------------------------------------
+
+@mixin font-face(
+  $font-name,
+  $font-local-1,
+  $font-local-2,
+  $font-path,
+  $font-file,
+  $font-weight: normal,
+  $font-style: normal
+) {
+  font-weight: $font-weight;
+  font-family: $font-name;
+  font-style: $font-style;
+  font-display: 'swap';
+  src: local($font-local-1), local($font-local-2),
+    url('../../fonts/#{$font-path}/#{$font-file}.woff2') format('woff2'),
+    url('../../fonts/#{$font-path}/#{$font-file}.woff') format('woff');
+}
+
+// Container
+// -----------------------------------------------------------------------------
+
+@mixin container($max-size: $container-width, $padding: spacer('xs')) {
+  width: 100%;
+  max-width: $max-size;
+  margin-right: auto;
+  margin-left: auto;
+
+  @if ($padding != 0) {
+    padding-right: $padding;
+    padding-left: $padding;
+
+    @media (min-width: bp('lg-min')) {
+      padding-right: $padding * 2;
+      padding-left: $padding * 2;
+    }
+  }
+}
+
+// Aspect ratio
+// -----------------------------------------------------------------------------
+
+@mixin aspect-ratio($width, $height, $embed) {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    display: block;
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+    content: '';
+  }
+
+  > #{$embed} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Object fit
+// -----------------------------------------------------------------------------
+
+@mixin object-fit($width, $height) {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    display: block;
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+    content: '';
+  }
+
+  img {
+    position: absolute;
+    top: -100%;
+    right: -100%;
+    bottom: -100%;
+    left: -100%;
+    margin: auto;
+  }
+
+  @supports (object-fit: cover) {
+    &::before {
+      content: none;
+    }
+
+    img {
+      position: inherit;
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      object-fit: cover;
+    }
+  }
+}
+
+// Colors utilities
+// -----------------------------------------------------------------------------
+
+@mixin colors($modifier: null) {
+  @if $modifier {
+    $modifier: '#{$modifier}\\:';
+  }
+
+  @each $color-name, $color-value in $color-global-map {
+    .#{$modifier}color-#{$color-name} {
+      color: $color-value;
+    }
+
+    .#{$modifier}bg-#{$color-name} {
+      background-color: $color-value;
+    }
+  }
+
+  @each $color-name, $color-value in $color-message-map {
+    .#{$modifier}color-#{$color-name} {
+      color: $color-value;
+    }
+  }
+}
+
+// Text utilities
+// -----------------------------------------------------------------------------
+
+@mixin text($modifier: null) {
+  @if $modifier {
+    $modifier: '#{$modifier}\\:';
+  }
+
+  @each $font-weight-name, $font-weight-value in $font-weight-map {
+    .#{$modifier}text-#{$font-weight-name} {
+      font-weight: $font-weight-value;
+    }
+  }
+
+  @each $font-size-name, $font-size-value in $font-size-map {
+    .#{$modifier}text-#{$font-size-name} {
+      font-size: $font-size-value;
+    }
+  }
+
+  @each $font-family-name, $font-family-value in $font-family-map {
+    .#{$modifier}text-#{$font-family-name} {
+      font-family: $font-family-value;
+    }
+  }
+
+  @each $line-height-name, $line-height-value in $line-height-map {
+    .#{$modifier}text-#{$line-height-name} {
+      line-height: $line-height-value;
+    }
+  }
+
+  .#{$modifier}text-left {
+    text-align: left;
+  }
+
+  .#{$modifier}text-right {
+    text-align: right;
+  }
+
+  .#{$modifier}text-center {
+    text-align: center;
+  }
+
+  .#{$modifier}text-justify {
+    text-align: justify;
+  }
+
+  .#{$modifier}text-uppercase {
+    text-transform: uppercase;
+  }
+
+  .#{$modifier}text-lowercase {
+    text-transform: lowercase;
+  }
+
+  .#{$modifier}text-no-transform {
+    text-transform: none;
+  }
+
+  .#{$modifier}text-line-through {
+    text-decoration: line-through;
+  }
+
+  .#{$modifier}text-no-decoration {
+    text-decoration: none;
+  }
+
+  .#{$modifier}text-no-wrap {
+    white-space: nowrap;
+  }
+}
+
+// Width utilities
+// -----------------------------------------------------------------------------
+
+@mixin widths($modifier: null) {
+  @if $modifier {
+    $modifier: '#{$modifier}\\:';
+  }
+
+  @each $width-name, $width-value in $width-map {
+    .#{$modifier}w-#{$width-name} {
+      width: $width-value;
+    }
+  }
+}
+
+// Height utilities
+// -----------------------------------------------------------------------------
+
+@mixin heights($modifier: null) {
+  @if $modifier {
+    $modifier: '#{$modifier}\\:';
+  }
+
+  @each $height-name, $height-value in $height-map {
+    .#{$modifier}h-#{$height-name} {
+      height: $height-value;
+    }
+  }
+}
+
+// Spacers utilities
+// -----------------------------------------------------------------------------
+
+@mixin spacers($modifier: null) {
+  @if $modifier {
+    $modifier: '#{$modifier}\\:';
+  }
+
+  @each $spacer-name, $spacer-value in $spacer-map {
+    .#{$modifier}m-#{$spacer-name} {
+      margin: $spacer-value;
+    }
+
+    .#{$modifier}mt-#{$spacer-name} {
+      margin-top: $spacer-value;
+    }
+
+    .#{$modifier}mr-#{$spacer-name} {
+      margin-right: $spacer-value;
+    }
+
+    .#{$modifier}mb-#{$spacer-name} {
+      margin-bottom: $spacer-value;
+    }
+
+    .#{$modifier}ml-#{$spacer-name} {
+      margin-left: $spacer-value;
+    }
+
+    .#{$modifier}p-#{$spacer-name} {
+      padding: $spacer-value;
+    }
+
+    .#{$modifier}pt-#{$spacer-name} {
+      padding-top: $spacer-value;
+    }
+
+    .#{$modifier}pr-#{$spacer-name} {
+      padding-right: $spacer-value;
+    }
+
+    .#{$modifier}pb-#{$spacer-name} {
+      padding-bottom: $spacer-value;
+    }
+
+    .#{$modifier}pl-#{$spacer-name} {
+      padding-left: $spacer-value;
+    }
+
+    .#{$modifier}gap-#{$spacer-name} {
+      --grid-gap: #{$spacer-value};
+    }
+
+    .#{$modifier}gap-y-#{$spacer-name} {
+      --grid-row-gap: #{$spacer-value};
+    }
+
+    .#{$modifier}gap-x-#{$spacer-name} {
+      --grid-col-gap: #{$spacer-value};
+    }
+  }
+}
+
+// Display utilities
+// -----------------------------------------------------------------------------
+
+@mixin display($modifier: null) {
+  @if $modifier {
+    $modifier: '#{$modifier}\\:';
+  }
+
+  .#{$modifier}block {
+    display: block;
+  }
+
+  .#{$modifier}hidden {
+    display: none;
+  }
+
+  .#{$modifier}inline {
+    display: inline;
+  }
+
+  .#{$modifier}inline-block {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .#{$modifier}flex {
+    display: flex;
+  }
+
+  .#{$modifier}inline-flex {
+    display: inline-flex;
+  }
+
+  .#{$modifier}flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .#{$modifier}flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+
+  .#{$modifier}flex-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  .#{$modifier}flex-row {
+    flex-direction: row;
+  }
+
+  .#{$modifier}flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  .#{$modifier}flex-column {
+    flex-direction: column;
+  }
+
+  .#{$modifier}flex-column-reverse {
+    flex-direction: column-reverse;
+  }
+
+  .#{$modifier}flex-main-start {
+    justify-content: flex-start;
+  }
+
+  .#{$modifier}flex-main-end {
+    justify-content: flex-end;
+  }
+
+  .#{$modifier}flex-main-center {
+    justify-content: center;
+  }
+
+  .#{$modifier}flex-main-between {
+    justify-content: space-between;
+  }
+
+  .#{$modifier}flex-main-around {
+    justify-content: space-around;
+  }
+
+  .#{$modifier}flex-cross-start {
+    align-items: flex-start;
+  }
+
+  .#{$modifier}flex-cross-end {
+    align-items: flex-end;
+  }
+
+  .#{$modifier}flex-cross-center {
+    align-items: center;
+  }
+
+  .#{$modifier}flex-cross-baseline {
+    align-items: baseline;
+  }
+
+  .#{$modifier}flex-cross-stretch {
+    align-items: stretch;
+  }
+
+  .#{$modifier}flex-self-start {
+    align-self: flex-start;
+  }
+
+  .#{$modifier}flex-self-end {
+    align-self: flex-end;
+  }
+
+  .#{$modifier}flex-self-center {
+    align-self: center;
+  }
+
+  .#{$modifier}flex-self-baseline {
+    align-self: baseline;
+  }
+
+  .#{$modifier}flex-self-stretch {
+    align-self: stretch;
+  }
+
+  .#{$modifier}flex-item-fluid {
+    flex: 1;
+  }
+
+  .#{$modifier}flex-item-auto {
+    flex: auto;
+  }
+
+  .#{$modifier}flex-item-initial {
+    flex: initial;
+  }
+
+  .#{$modifier}flex-item-none {
+    flex: none;
+  }
+
+  .#{$modifier}flex-item-first {
+    order: -1;
+  }
+
+  .#{$modifier}flex-item-medium {
+    order: 0;
+  }
+
+  .#{$modifier}flex-item-last {
+    order: 1;
+  }
+}
+
+// Grid utilities
+// -----------------------------------------------------------------------------
+
+@mixin grid($modifier: null) {
+  @if $modifier {
+    $modifier: '#{$modifier}\\:';
+  }
+
+  .#{$modifier}grid {
+    --grid-count: 1;
+    --grid-gap: 0;
+
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    margin: 0 calc((-1 * var(--grid-col-gap, var(--grid-gap))) / 2);
+
+    > * {
+      width: calc((100% / var(--grid-count)) - var(--grid-gap));
+      margin: 0 calc(var(--grid-col-gap, var(--grid-gap)) / 2) var(--grid-row-gap, var(--grid-gap));
+    }
+
+    @supports (display: grid) {
+      display: grid;
+      grid-template-columns: repeat(var(--grid-count), minmax(0, 1fr));
+      grid-gap: var(--grid-row-gap, var(--grid-gap)) var(--grid-col-gap, var(--grid-gap));
+      gap: var(--grid-row-gap, var(--grid-gap)) var(--grid-col-gap, var(--grid-gap));
+      margin: 0;
+
+      > * {
+        width: inherit !important;
+        margin: 0 !important;
+      }
+    }
+  }
+
+  // Count variants
+  .#{$modifier}grid-cols-1 {
+    --grid-count: 1;
+  }
+
+  .#{$modifier}grid-cols-2 {
+    --grid-count: 2;
+  }
+
+  .#{$modifier}grid-cols-3 {
+    --grid-count: 3;
+  }
+
+  .#{$modifier}grid-cols-4 {
+    --grid-count: 4;
+  }
+
+  .#{$modifier}grid-cols-5 {
+    --grid-count: 5;
+  }
+
+  .#{$modifier}grid-cols-6 {
+    --grid-count: 6;
+  }
+
+  .#{$modifier}grid-cols-7 {
+    --grid-count: 7;
+  }
+
+  .#{$modifier}grid-cols-8 {
+    --grid-count: 8;
+  }
+
+  .#{$modifier}grid-cols-9 {
+    --grid-count: 9;
+  }
+
+  .#{$modifier}grid-cols-10 {
+    --grid-count: 10;
+  }
+
+  .#{$modifier}grid-cols-11 {
+    --grid-count: 11;
+  }
+
+  .#{$modifier}grid-cols-12 {
+    --grid-count: 12;
+  }
+}
+
+// Radius utilities
+// -----------------------------------------------------------------------------
+
+@mixin radius($modifier: null) {
+  @if $modifier {
+    $modifier: '#{$modifier}\\:';
+  }
+
+  @each $radius-name, $radius-value in $radius-map {
+    .#{$modifier}radius-#{$radius-name} {
+      border-radius: $radius-value;
+    }
+  }
+}
+
+// Responsive component generator
+// -----------------------------------------------------------------------------
+
+@mixin components($component, $bp-name) {
+  @if $component == 'colors' {
+    @include colors($bp-name);
+  }
+
+  @if $component == 'text' {
+    @include text($bp-name);
+  }
+
+  @if $component == 'widths' {
+    @include widths($bp-name);
+  }
+
+  @if $component == 'heights' {
+    @include heights($bp-name);
+  }
+
+  @if $component == 'spacers' {
+    @include spacers($bp-name);
+  }
+
+  @if $component == 'display' {
+    @include display($bp-name);
+  }
+
+  @if $component == 'grid' {
+    @include grid($bp-name);
+  }
+
+  @if $component == 'radius' {
+    @include radius($bp-name);
+  }
+}
+
+@mixin responsive($component) {
+  $bp-name-prev: 'sm';
+  $bp-value-prev: null;
+
+  @each $bp-name, $bp-value in $breakpoint-map {
+    @if index($breakpoint-map, ($bp-name $bp-value)) == 1 {
+      @media (max-width: $bp-value - 1px) {
+        @include components($component, '#{$bp-name-prev}');
+      }
+    }
+
+    @if index($breakpoint-map, ($bp-name $bp-value)) != 1 {
+      @media (min-width: $bp-value-prev) and (max-width: $bp-value - 1px) {
+        @include components($component, $bp-name-prev);
+      }
+    }
+
+    @if index($breakpoint-map, ($bp-name $bp-value)) == length($breakpoint-map) {
+      @media (min-width: $bp-value) {
+        @include components($component, '#{$bp-name}');
+      }
+    }
+
+    $bp-name-prev: $bp-name;
+    $bp-value-prev: $bp-value;
+  }
+}

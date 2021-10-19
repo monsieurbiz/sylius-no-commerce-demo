@@ -1,0 +1,6 @@
+app:
+    ui:
+        cart: Panier
+        menu: Menu
+        pagaio_copyright: Copyright ©2020 - Propulsé par Pagaio avec Sylius
+        optional: Optionnel

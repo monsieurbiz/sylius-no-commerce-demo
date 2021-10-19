@@ -1,0 +1,11 @@
+//
+// Grid
+// -----------------------------------------------------------------------------
+
+@if $enable-grid-utilities {
+  @include grid;
+
+  @if $enable-responsive-grid {
+    @include responsive('grid');
+  }
+}

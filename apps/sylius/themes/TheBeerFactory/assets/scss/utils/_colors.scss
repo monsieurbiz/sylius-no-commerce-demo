@@ -1,0 +1,11 @@
+//
+// Colors
+// -----------------------------------------------------------------------------
+
+@if $enable-colors-utilities {
+  @include colors;
+
+  @if $enable-responsive-colors {
+    @include responsive('colors');
+  }
+}

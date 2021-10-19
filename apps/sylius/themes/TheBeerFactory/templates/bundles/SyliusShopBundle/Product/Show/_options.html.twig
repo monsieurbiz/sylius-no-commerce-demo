@@ -1,0 +1,5 @@
+{% for option_form in form.cartItem.variant %}
+    <div class="mb-sm">
+        {{ form_row(option_form, { 'attr': { 'data-option': option_form.vars.name } }) }}
+    </div>
+{% endfor %}

@@ -1,0 +1,26 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block content %}
+{% include '@SyliusShop/Product/Show/_breadcrumb.html.twig' %}
+
+<div class="grid grid-cols-2 gap-sm gap-x-md sm:grid-cols-1 mb-lg md:mt-sm sm:mt-xs">
+    <div class="w-1/2 md:w-full sm:w-full">
+        {{ sylius_template_event('sylius.shop.product.show.left_sidebar', _context) }}
+    </div>
+    <div class="w-3/5 md:w-full sm:w-full">
+        {{ sylius_template_event('sylius.shop.product.show.right_sidebar', _context) }}
+    </div>
+</div>
+
+{{ sylius_template_event('sylius.shop.product.show.content', _context) }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+<script type="text/javascript">
+    lightbox.option({
+        'albumLabel': '{{ 'sylius.lightbox.image_album_label'|trans|escape('js') }}'
+    });
+</script>
+{% endblock %}

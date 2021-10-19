@@ -1,0 +1,11 @@
+//
+// Heights utilities
+// -----------------------------------------------------------------------------
+
+@if $enable-heights-utilities {
+  @include heights;
+
+  @if $enable-responsive-heights {
+    @include responsive('heights');
+  }
+}

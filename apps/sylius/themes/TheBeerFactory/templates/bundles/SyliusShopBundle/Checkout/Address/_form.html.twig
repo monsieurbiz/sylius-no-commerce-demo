@@ -1,0 +1,31 @@
+<div id="sylius-billing-address" {{ sylius_test_html_attribute('billing-address') }}>
+    <h2 class="h2 mt-n">{{ 'sylius.ui.billing_address'|trans }}</h2>
+
+    {% include '@SyliusShop/Checkout/Address/_addressBookSelect.html.twig' with {'target': '#billing-address-fields', 'type': 'billing' } %}
+
+    {% if form.customer is defined %}
+        {% include '@SyliusShop/Common/Form/_login.html.twig' with {'form': form.customer} %}
+    {% endif %}
+
+    <div id="billing-address-fields">
+        {% include '@SyliusShop/Common/Form/_address.html.twig' with {'form': form.billingAddress, 'order': order, 'type': 'billing'} %}
+    </div>
+
+    <div class="mt-md">
+        {{ form_row(form.differentShippingAddress, sylius_test_form_attribute('different-shipping-address')|sylius_merge_recursive({'attr': {'data-toggles': 'sylius-shipping-address'}, 'label_attr': {'data-test-different-shipping-address-label': ''}} )) }}
+    </div>
+
+    {{ sylius_template_event('sylius.shop.checkout.address.billing_address_form', {'order': order}) }}
+</div>
+
+<div class="mt-md" id="sylius-shipping-address" {{ sylius_test_html_attribute('shipping-address') }}>
+    <h2 class="h2 mt-n">{{ 'sylius.ui.shipping_address'|trans }}</h2>
+
+    {% include '@SyliusShop/Checkout/Address/_addressBookSelect.html.twig' with {'target': '#shipping-address-fields', 'type': 'shipping' } %}
+
+    <div id="shipping-address-fields">
+        {% include '@SyliusShop/Common/Form/_address.html.twig' with {'form': form.shippingAddress, 'order': order, 'type': 'shipping'} %}
+    </div>
+
+    {{ sylius_template_event('sylius.shop.checkout.address.shipping_address_form', {'order': order}) }}
+</div>

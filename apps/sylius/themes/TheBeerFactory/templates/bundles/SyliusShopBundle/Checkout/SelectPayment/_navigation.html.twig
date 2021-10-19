@@ -1,0 +1,32 @@
+{% set enabled = order.payments|length %}
+
+<div class="flex flex-main-between mt-lg sm:flex-column-reverse sm:mt-md">
+    <div class="mr-sm sm:mt-sm sm:mr-n">
+        {% if sylius_is_shipping_required(order) %}
+            <a
+                class="btn btn--reversed sm:w-full"
+                href="{{ path('sylius_shop_checkout_select_shipping') }}"
+            >
+                {{ 'sylius.ui.change_shipping_method'|trans }}
+            </a>
+        {% else %}
+            <a
+                class="btn btn--reversed sm:w-full"
+                href="{{ path('sylius_shop_checkout_address') }}"
+            >
+                {{ 'sylius.ui.change_address'|trans }}
+            </a>
+        {% endif %}
+    </div>
+    <div class="ml-sm sm:ml-n">
+        <button
+            class="btn sm:w-full"
+            id="next-step"
+            type="submit"
+            {% if not enabled %} disabled{% endif %}
+            {{ sylius_test_html_attribute('next-step') }}
+        >
+            {{ 'sylius.ui.next'|trans }}
+        </button>
+    </div>
+</div>

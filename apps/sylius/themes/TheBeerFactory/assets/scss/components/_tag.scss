@@ -1,0 +1,43 @@
+//
+// Tags
+// -----------------------------------------------------------------------------
+
+.tag {
+  @extend %ellipsis;
+
+  display: inline-block;
+  padding: spacer('xs') spacer('sm');
+  color: color('white');
+  font-weight: font-weight('600');
+  font-size: font-size('xxs');
+  line-height: 1;
+  text-transform: uppercase;
+  vertical-align: top;
+  background: color('gray-dark');
+  border-radius: 3rem;
+
+  &:not(:last-child) {
+    margin-right: spacer('xxs');
+  }
+}
+
+// Variants
+// -----------------------------------------------------------------------------
+
+.tag--light {
+  color: color('gray-dark');
+  background-color: color('white-dimmed');
+  border: 1px solid color('gray-light');
+}
+
+.tag--info {
+  background-color: color('info');
+}
+
+.tag--success {
+  background-color: color('success');
+}
+
+.tag--error {
+  background-color: color('error');
+}

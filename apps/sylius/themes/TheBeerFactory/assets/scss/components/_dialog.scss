@@ -1,0 +1,133 @@
+//
+// Dialog
+// -----------------------------------------------------------------------------
+
+.dialog {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  transition-property: visibility, opacity;
+  pointer-events: none;
+
+  &.--open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: inherit;
+  }
+}
+
+@media (min-width: bp('md-min')) {
+  .dialog {
+    align-items: center;
+  }
+}
+
+// Inner
+// -----------------------------------------------------------------------------
+
+.dialog__inner {
+  position: relative;
+  width: calc(100% - (#{spacer('sm')} * 2));
+  max-height: calc(100% - (6rem + #{spacer('sm')}));
+  margin: 0 0 spacer('xl');
+  padding: spacer('sm');
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: color('white');
+  border-radius: radius('sm');
+  transform: translateY(30%);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  transition-property: transform, opacity;
+  transition-duration: 0.3s, 0.4s;
+
+  .--open & {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (min-width: bp('md-min')) {
+  .dialog__inner {
+    max-width: 60rem;
+    max-height: 90%;
+    margin: 0;
+    padding: spacer('md');
+  }
+}
+
+// Close
+// -----------------------------------------------------------------------------
+
+.dialog__close {
+  @extend %btn-unstyled;
+  @extend %text-hide;
+
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 1.6rem;
+  height: 1.6rem;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 0.2rem;
+    background: color('gray-dark');
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: background-color 0.2s ease-in-out;
+    content: '';
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}
+
+@media (min-width: bp('md-min')) {
+  .dialog__close {
+    top: 2rem;
+    right: 2rem;
+  }
+}
+
+// Actions
+// -----------------------------------------------------------------------------
+
+.dialog__actions {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin: spacer('lg') 0 0;
+
+  > * {
+    &:not(:first-child) {
+      margin-left: spacer('sm');
+    }
+  }
+}
+
+// Alert variant
+// -----------------------------------------------------------------------------
+
+@media (min-width: bp('md-min')) {
+  .dialog--alert {
+    .dialog__inner {
+      max-width: 40rem;
+    }
+  }
+}

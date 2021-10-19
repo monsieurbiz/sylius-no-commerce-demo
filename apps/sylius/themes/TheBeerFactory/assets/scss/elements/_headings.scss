@@ -1,0 +1,56 @@
+//
+// Headings
+// -----------------------------------------------------------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  margin: 0.8em 0;
+  font-weight: font-weight('700');
+  line-height: line-height('tight');
+}
+
+h1,
+.h1 {
+  font-size: font-size('7xl');
+  font-family: font-family('heading');
+  line-height: line-height('tighter');
+}
+
+h2,
+.h2 {
+  font-size: font-size('5xl');
+  font-family: font-family('heading');
+}
+
+h3,
+h4,
+.h3,
+.h4 {
+  font-size: font-size('md');
+  font-family: font-family('base');
+}
+
+h5,
+h6,
+.h5,
+.h6 {
+  font-size: font-size('sm');
+  font-family: font-family('base');
+}
+
+@media (min-width: bp('md-min')) {
+  h1,
+  .h1 {
+    font-size: font-size('8xl');
+  }
+}

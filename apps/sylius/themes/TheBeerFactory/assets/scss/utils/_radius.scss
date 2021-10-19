@@ -1,0 +1,11 @@
+//
+// Radius utilities
+// -----------------------------------------------------------------------------
+
+@if $enable-radius-utilities {
+  @include radius;
+
+  @if $enable-responsive-radius {
+    @include responsive('radius');
+  }
+}

@@ -1,0 +1,22 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% form_theme form '@SyliusShop/Form/theme.html.twig' %}
+
+{% block content %}
+    <div class="pr-7xl pl-7xl md:p-n sm:p-n">
+        {% include '@SyliusShop/Login/_header.html.twig' %}
+
+        {{ sylius_template_event('sylius.shop.login.after_content_header') }}
+
+        <div class="box p-lg pr-2xl pl-2xl md:p-lg sm:p-sm">
+            <div class="box__columns">
+                <div class="box__column">
+                    {{ sylius_template_event('sylius.shop.login.main_column', _context) }}
+                </div>
+                <div class="box__column">
+                    {{ sylius_template_event('sylius.shop.login.register_column', _context) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

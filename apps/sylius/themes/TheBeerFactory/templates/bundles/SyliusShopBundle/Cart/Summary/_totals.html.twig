@@ -1,0 +1,113 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+{% set itemsSubtotal = sylius_order_items_subtotal(cart) %}
+{% set taxIncluded = sylius_order_tax_included(cart) %}
+{% set taxExcluded = sylius_order_tax_excluded(cart) %}
+
+<div class="box lg:mt-md md:mt-md sm:mt-md">
+    <h2 class="h2 mt-n">{{ 'sylius.ui.summary'|trans }}</h2>
+
+    {{ sylius_template_event('sylius.shop.cart.summary.totals', {'cart': cart}) }}
+
+    <table class="table table--light text-600 text-xs">
+        <tbody>
+            <tr>
+                <td>
+                    {{ 'sylius.ui.items_total'|trans }}:
+                </td>
+                <td class="text-right">
+                    {{ money.convertAndFormat(itemsSubtotal) }}
+                </td>
+            </tr>
+            {% if cart.orderPromotionTotal %}
+                <tr>
+                    <td>
+                        {{ 'sylius.ui.discount'|trans }}:
+                    </td>
+                    <td
+                        class="text-right"
+                        id="sylius-cart-promotion-total"
+                        {{ sylius_test_html_attribute('cart-promotion-total') }}
+                    >
+                        {{ money.convertAndFormat(cart.orderPromotionTotal) }}
+                    </td>
+                </tr>
+            {% endif %}
+            {% if cart.shipments is not empty %}
+                <tr>
+                    <td>
+                        {{ 'sylius.ui.shipping_estimated_cost'|trans }}:
+                    </td>
+                    <td class="text-right">
+                        {% if cart.getAdjustmentsTotal('shipping') > cart.shippingTotal %}
+                            <span class="color-gray text-xxs text-line-through old-price">
+                                {{ money.convertAndFormat(cart.getAdjustmentsTotal('shipping')) }}
+                            </span>
+                        {% endif %}
+                        <span
+                            id="sylius-cart-shipping-total"
+                            {{ sylius_test_html_attribute('cart-shipping-total') }}
+                        >
+                            {{ money.convertAndFormat(cart.shippingTotal) }}
+                        </span>
+                    </td>
+                </tr>
+            {% endif %}
+            <tr {% if taxIncluded and not taxExcluded %}class="tax-disabled"{% endif %}>
+                <td>{{ 'sylius.ui.taxes_total'|trans }}:</td>
+                <td class="text-right">
+                    {% if not taxIncluded and not taxExcluded %}
+                        <div id="sylius-cart-tax-none" {{ sylius_test_html_attribute('cart-no-tax') }}>{{ money.convertAndFormat(0) }}</div>
+                    {% endif %}
+                    {% if taxExcluded %}
+                        <div
+                            id="sylius-cart-tax-excluded"
+                            {{ sylius_test_html_attribute('cart-tax-exluded') }}
+                        >
+                            {{ money.convertAndFormat(taxExcluded) }}
+                        </div>
+                    {% endif %}
+                    {% if taxIncluded %}
+                        <div class="tax-disabled">
+                            <span
+                                id="sylius-cart-tax-included"
+                                {{ sylius_test_html_attribute('cart-tax-included') }}
+                            >
+                                {{ money.convertAndFormat(taxIncluded) }}
+                            </span>
+                            <small class="block text-tight">
+                                ({{ 'sylius.ui.included_in_price'|trans }})
+                            </small>
+                        </div>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr class="text-700 text-4xl text-heading md:text-xl sm:text-lg">
+                <td>
+                    {{ 'sylius.ui.order_total'|trans }}:
+                </td>
+                <td
+                    class="text-right"
+                    id="sylius-cart-grand-total"
+                    {{ sylius_test_html_attribute('cart-grand-total') }}
+                >
+                    {{ money.convertAndFormat(cart.total) }}
+                </td>
+            </tr>
+            {% if cart.currencyCode is not same as(sylius.currencyCode) %}
+                <tr>
+                    <td>
+                        {{ 'sylius.ui.base_currency_order_total'|trans }}:
+                    </td>
+                    <td
+                        class="text-right"
+                        id="sylius-cart-base-grand-total"
+                        {{ sylius_test_html_attribute('cart-base-grand-total') }}
+                    >
+                        {{ money.format(cart.total, cart.currencyCode) }}
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>

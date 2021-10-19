@@ -1,0 +1,48 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+{% set state = order.paymentState %}
+
+{% if state != 'cart' %}
+    {% include "@SyliusShop/Common/Order/Label/PaymentState/orderPaymentState.html.twig" %}
+{% endif %}
+
+{% for payment in order.payments %}
+    {% set state = payment.state %}
+
+    <div class="flex flex-cross-center w-full">
+        <svg
+            class="mr-sm"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="40"
+            height="40"
+        >
+            <path d="M17.75 4a3.75 3.75 0 013.75 3.75v8a3.75 3.75 0 01-3.75 3.75h-12A3.75 3.75 0 012 15.75v-8A3.75 3.75 0 015.75 4h12zM20 10.5H3.5v5.25c0 1.24 1 2.25 2.25 2.25h12c1.24 0 2.25-1 2.25-2.25V10.5zM6.75 14h.08a.75.75 0 01-.07 1.5h-.01a.75.75 0 110-1.5zm6 0a.75.75 0 110 1.5h-2a.75.75 0 110-1.5zm5-8.5h-12c-1.24 0-2.25 1-2.25 2.25V9H20V7.75c0-1.24-1-2.25-2.25-2.25z"/>
+        </svg>
+        <div class="flex-item-fluid">
+            <span
+                class="block text-600"
+                id="sylius-payment-method"
+                {{ sylius_test_html_attribute('payment-method') }}
+            >
+                {{ payment.method }}
+            </span>
+            <span
+                class="block text-tight"
+                {{ sylius_test_html_attribute('payment-price') }}
+            >
+                {{ money.format(payment.amount, payment.currencyCode) }}
+            </span>
+            {% if state != 'cart' %}
+                <span
+                    class="block mt-xs"
+                    id="payment-status"
+                    {{ sylius_test_html_attribute('payment-state') }}
+                >
+                    {% include "@SyliusShop/Common/Order/Label/PaymentState/singlePaymentState.html.twig" with { 'state': state } %}
+                </span>
+            {% endif %}
+        </div>
+    </div>
+
+{% endfor %}

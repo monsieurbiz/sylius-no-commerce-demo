@@ -1,0 +1,120 @@
+//
+// Functions
+// -----------------------------------------------------------------------------
+
+// Spacer
+// -----------------------------------------------------------------------------
+
+@function spacer($spacer) {
+  @if map-has-key($spacer-map, $spacer) {
+    @return map-get($spacer-map, $spacer);
+  }
+
+  @warn "Unfortunately, no value could be retrieved from #{$spacer-map}";
+}
+
+// Color
+// -----------------------------------------------------------------------------
+
+$colors-variants: ();
+$colors-variants: map-merge(
+  $color-global-map,
+  map-merge($color-message-map, $color-network-map)
+);
+
+@function color($color) {
+  @if map-has-key($colors-variants, $color) {
+    @return map-get($colors-variants, $color);
+  }
+
+  @warn "Unfortunately, no value could be retrieved from #{$colors-variants}";
+}
+
+// Font weight
+// -----------------------------------------------------------------------------
+
+@function font-weight($font-weight) {
+  @if map-has-key($font-weight-map, $font-weight) {
+    @return map-get($font-weight-map, $font-weight);
+  }
+
+  @warn "Unfortunately, no value could be retrieved from #{$font-weight-map}";
+}
+
+// Font size
+// -----------------------------------------------------------------------------
+
+@function font-size($font-size) {
+  @if map-has-key($font-size-map, $font-size) {
+    @return map-get($font-size-map, $font-size);
+  }
+
+  @warn "Unfortunately, no value could be retrieved from #{$font-size-map}";
+}
+
+// Font family
+// -----------------------------------------------------------------------------
+
+@function font-family($font-family) {
+  @if map-has-key($font-family-map, $font-family) {
+    @return map-get($font-family-map, $font-family);
+  }
+
+  @warn "Unfortunately, no value could be retrieved from #{$font-family-map}";
+}
+
+// Line height
+// -----------------------------------------------------------------------------
+
+@function line-height($line-height) {
+  @if map-has-key($line-height-map, $line-height) {
+    @return map-get($line-height-map, $line-height);
+  }
+
+  @warn "Unfortunately, no value could be retrieved from #{$line-height-map}";
+}
+
+// Radius
+// -----------------------------------------------------------------------------
+
+@function radius($radius) {
+  @if map-has-key($radius-map, $radius) {
+    @return map-get($radius-map, $radius);
+  }
+
+  @warn "Unfortunately, no value could be retrieved from #{$radius-map}";
+}
+
+// Breakpoints
+// -----------------------------------------------------------------------------
+
+$bp-min: ();
+$bp-max: ();
+$bp-all: ();
+
+@each $bp-name, $bp-value in $breakpoint-map {
+  $bp-min: map-merge(
+    $bp-min,
+    (
+      '#{$bp-name}-min': $bp-value,
+    )
+  );
+  $bp-max: map-merge(
+    $bp-max,
+    (
+      '#{$bp-name}-max': (
+        $bp-value - 1px,
+      ),
+    )
+  );
+}
+
+$bp-all: map-merge($bp-min, $bp-max);
+
+@function bp($breakpoint) {
+  @if map-has-key($bp-all, $breakpoint) {
+    @return map-get($bp-all, $breakpoint);
+  }
+
+  @warn "Unfortunately, no value could be retrieved from #{$bp-all}";
+}

@@ -1,0 +1,24 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+<div class="card" {{ sylius_test_html_attribute('product') }}>
+    <div class="card__picture" data-label="{{ 'sylius.ui.view_more'|trans }}">
+        {% include '@SyliusShop/Product/_mainImage.html.twig' with {'product': product} %}
+    </div>
+    <div class="card__content" {{ sylius_test_html_attribute('product-content') }}>
+        <a
+            class="card__name sylius-product-name"
+            href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}"
+            {{ sylius_test_html_attribute('product-name', product.name) }}
+        >
+            {{ product.name }}
+        </a>
+        {% if not product.variants.empty() %}
+            <div
+                class="card__price sylius-product-price"
+                {{ sylius_test_html_attribute('product-price') }}
+            >
+                {{ money.calculatePrice(product|sylius_resolve_variant) }}
+            </div>
+        {% endif %}
+    </div>
+</div>

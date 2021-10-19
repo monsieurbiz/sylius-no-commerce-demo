@@ -1,0 +1,14 @@
+{% set state = data.state %}
+{% set value = 'sylius.ui.' ~ state %}
+
+{% if options.vars.labels is defined %}
+    {% include [(options.vars.labels ~ '/' ~ state ~ '.html.twig'), '@SyliusUi/Label/_default.html.twig'] with {'value': value} %}
+{% else %}
+    {% include '@SyliusUi/Label/_default.html.twig' with {'value': value} %}
+{% endif %}
+
+{% if data.returnRequest is not null %}
+    <span class="tag order-type">
+        {{ 'sylius_plus.ui.returns.replacement'|trans }}
+    </span>
+{% endif %}

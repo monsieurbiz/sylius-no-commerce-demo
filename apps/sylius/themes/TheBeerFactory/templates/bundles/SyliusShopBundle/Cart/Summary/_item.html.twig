@@ -1,0 +1,38 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+{% set product_variant = item.variant %}
+
+<tr {{ sylius_test_html_attribute('cart-product-row', item.productName) }}>
+    <td {{ sylius_test_html_attribute('cart-item', loop_index|default(null) ) }}>
+        {% include '@SyliusShop/Product/_info.html.twig' with {'variant': product_variant} %}
+    </td>
+    <td data-title="{{ 'sylius.ui.unit_price'|trans }}">
+        {% if item.unitPrice != item.discountedUnitPrice %}
+            <span class="sylius-regular-unit-price" {{ sylius_test_html_attribute('cart-product-regular-unit-price') }}>
+                <span class="color-gray text-xxs text-line-through old-price">{{ money.convertAndFormat(item.unitPrice) }}</span>
+            </span>
+        {% endif %}
+        <span class="sylius-unit-price" {{ sylius_test_html_attribute('cart-product-unit-price', item.productName) }}>{{ money.convertAndFormat(item.discountedUnitPrice) }}</span>
+    </td>
+    <td data-title="{{ 'sylius.ui.qty'|trans }}">
+        <span class="inline-block sylius-quantity">
+            {{ form_widget(form.quantity, sylius_test_form_attribute('cart-item-quantity-input', item.productName)|sylius_merge_recursive({'attr': {'form': main_form, 'class': 'form-control w-auto'}})) }}
+        </span>
+    </td>
+    <td class="center aligned">
+        <form action="{{ path('sylius_shop_cart_item_remove', {'id': item.id}) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token(item.id) }}" />
+            <button
+                class="btn btn--reversed pr-xs pl-xs sylius-cart-remove-button"
+                type="submit"
+                {{ sylius_test_html_attribute('cart-remove-button', item.productName) }}
+            >
+                {{ 'sylius.ui.delete'|trans }}
+            </button>
+        </form>
+    </td>
+    <td data-title="{{ 'sylius.ui.total'|trans }}">
+        <span class="sylius-total" {{ sylius_test_html_attribute('cart-product-subtotal') }}>{{ money.convertAndFormat(item.subtotal) }}</span>
+    </td>
+</tr>

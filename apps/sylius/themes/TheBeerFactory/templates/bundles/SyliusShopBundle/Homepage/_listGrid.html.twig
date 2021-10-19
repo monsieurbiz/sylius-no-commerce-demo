@@ -1,0 +1,13 @@
+{% if products|length == 1 %}
+    {% set height = "h-full" %}
+    {% set smallColumns = "1" %}
+{% endif %}
+{% if products|length == 4 %}
+    {% set columns = "2" %}
+{% endif %}
+
+<div class="grid grid-cols-{{ columns|default(products|length) }} gap-md sm:grid-cols-{{ smallColumns|default('2') }} sm:gap-sm {{ height|default('') }}">
+  {% for product in products %}
+      {% include '@SyliusShop/Product/_box.html.twig' %}
+  {% endfor %}
+</div>

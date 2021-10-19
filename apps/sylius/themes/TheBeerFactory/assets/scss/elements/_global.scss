@@ -1,0 +1,185 @@
+//
+// Global
+// -----------------------------------------------------------------------------
+
+// Page
+// -----------------------------------------------------------------------------
+
+html {
+  height: 100%;
+  font-size: 62.5%; // IE9-IE11 math fixing
+  font-size: calc(1em * 0.625);
+}
+
+body {
+  position: relative;
+  color: color('gray-dark');
+  font-weight: font-weight('400');
+  font-size: font-size('sm');
+  font-family: font-family('base');
+  line-height: line-height('spaced');
+  background: color('white');
+}
+
+// Focus state
+// -----------------------------------------------------------------------------
+
+* {
+  &:focus {
+    outline: 1px dashed color('gray-light');
+    outline-offset: 0.15em;
+  }
+}
+
+// Selection
+// -----------------------------------------------------------------------------
+
+::selection {
+  color: color('white');
+  background-color: color('primary');
+}
+
+// Fonts
+// -----------------------------------------------------------------------------
+
+// Source Sans Pro Light
+@font-face {
+  @include font-face(
+    'Source Sans Pro',
+    'Source Sans Pro Light',
+    'SourceSansPro-Light',
+    'sourcesanspro',
+    'sourcesanspro-light-webfont',
+    300
+  );
+}
+
+// Source Sans Pro Regular
+@font-face {
+  @include font-face(
+    'Source Sans Pro',
+    'Source Sans Pro Regular',
+    'SourceSansPro-Regular',
+    'sourcesanspro',
+    'sourcesanspro-regular-webfont',
+    400
+  );
+}
+
+// Source Sans Pro SemiBold
+@font-face {
+  @include font-face(
+    'Source Sans Pro',
+    'Source Sans Pro SemiBold',
+    'SourceSansPro-SemiBold',
+    'sourcesanspro',
+    'sourcesanspro-semibold-webfont',
+    600
+  );
+}
+
+// Spectral Bold
+@font-face {
+  @include font-face(
+    'Spectral',
+    'Spectral Bold',
+    'Spectral-Bold',
+    'spectral',
+    'spectral-bold-webfont',
+    700
+  );
+}
+
+// Texts
+// -----------------------------------------------------------------------------
+
+p {
+  > img {
+    &:only-child {
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+}
+
+blockquote {
+  p {
+    &:first-child {
+      &::before {
+        content: '« ';
+      }
+    }
+
+    &:last-child {
+      &::after {
+        content: ' »';
+      }
+    }
+  }
+}
+
+cite {
+  font-size: 0.9em;
+}
+
+hr {
+  height: 1px;
+  margin: spacer("md") 0;
+  background: color("gray-light");
+  border: 0;
+}
+
+li {
+  &::marker {
+    color: color('primary');
+  }
+}
+
+// links
+// -----------------------------------------------------------------------------
+
+a {
+  color: currentColor;
+  text-decoration: underline;
+  transition: color 0.2s ease-in-out;
+
+  &:focus,
+  &:hover {
+    color: color('primary');
+  }
+}
+
+// Images
+// -----------------------------------------------------------------------------
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+svg {
+  display: inline-block;
+  vertical-align: top;
+  transition: fill 0.2s ease-in-out;
+  fill: currentColor;
+}
+
+// Animations
+// -----------------------------------------------------------------------------
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

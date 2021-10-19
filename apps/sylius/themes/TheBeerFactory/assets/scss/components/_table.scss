@@ -1,0 +1,223 @@
+//
+// Table
+// -----------------------------------------------------------------------------
+
+.table {
+  thead {
+    background-color: transparent;
+
+    th {
+      border-width: 0;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  tfoot {
+    text-align: right;
+
+    th,
+    td {
+      background: color('white-dimmed');
+    }
+  }
+}
+
+// Sortable
+// -----------------------------------------------------------------------------
+
+.table__sortable {
+  a {
+    position: relative;
+    display: block;
+    padding: 0 spacer('sm') 0 0;
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: calc(50% - 0.4rem);
+      right: 0;
+      width: 0.6rem;
+      height: 0.6rem;
+      background: transparent;
+      border: 1px solid color('gray-light');
+      border-width: 1px 0 0 1px;
+      transform: rotate(45deg);
+      transition: border-color 0.2s;
+      content: '';
+    }
+
+    &::after {
+      top: 50%;
+      border-width: 0 1px 1px 0;
+    }
+
+    &:focus,
+    &:hover {
+      &::before,
+      &::after {
+        border-color: color('gray');
+      }
+    }
+  }
+}
+
+.table__sortable--ascending {
+  a {
+    &::before {
+      border-color: color('gray');
+    }
+  }
+}
+
+.table__sortable--descending {
+  a {
+    &::after {
+      border-color: color('gray');
+    }
+  }
+}
+
+// Selectable
+// -----------------------------------------------------------------------------
+
+.table__selectable {
+  position: relative;
+  cursor: pointer;
+}
+
+
+// Light variant
+// -----------------------------------------------------------------------------
+
+.table--light {
+  th,
+  td {
+    padding-top: spacer('xs');
+    padding-bottom: spacer('xs');
+    border-width: 1px 0 0;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  tfoot {
+    th,
+    td {
+      background-color: inherit;
+    }
+
+    tr {
+      &:first-child {
+        th,
+        td {
+          border-top-width: 0;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: bp('md-min')) {
+  .table--light {
+    th,
+    td {
+      padding-top: spacer('sm');
+      padding-bottom: spacer('sm');
+    }
+
+    thead {
+      th {
+        padding-top: spacer('xs');
+      }
+    }
+  }
+}
+
+// Responsive variant
+// -----------------------------------------------------------------------------
+
+@media (max-width: bp('md-max')) {
+  .table--responsive {
+    display: block;
+
+    thead {
+      display: none;
+    }
+
+    tbody {
+      display: block;
+
+      tr {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0 0 spacer('xs');
+
+        &:not(:last-child) {
+          margin: 0 0 spacer('xs');
+          border-bottom: 1px solid var(--table-border-color);
+        }
+      }
+
+      td {
+        display: flex;
+        flex: 1 1 auto;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: calc(#{spacer('xs')} + (#{spacer('xs')} / 2)) 0 spacer('xs');
+        text-align: left;
+        border: 0;
+
+        &[data-title] {
+          justify-content: space-between;
+
+          &::before {
+            display: flex;
+            flex: 0 0 auto;
+            align-items: center;
+            margin: 0 spacer('sm') 0 0;
+            padding: calc(#{spacer('xs')} / 2) spacer('xs');
+            color: color('white');
+            font-weight: font-weight('600');
+            font-size: font-size('xxs');
+            background: color('gray-dark');
+            border-radius: radius('full');
+            content: attr(data-title);
+          }
+        }
+
+        &:not(:first-child) {
+          padding-top: spacer('xs');
+        }
+
+        &:not(:last-child) {
+          padding-bottom: calc(#{spacer('xs')} / 2);
+        }
+      }
+    }
+
+    tfoot {
+      &,
+      tr,
+      th,
+      td {
+        display: block;
+        width: 100%;
+      }
+
+      th,
+      td {
+        padding: calc(#{spacer('xs')} / 4) 0;
+        border: 0;
+      }
+    }
+  }
+}

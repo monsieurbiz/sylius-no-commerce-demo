@@ -1,0 +1,22 @@
+{% include '@SyliusShop/Common/Order/_addresses.html.twig' %}
+{% include '@SyliusShop/Common/Order/_table.html.twig' %}
+
+{% set orderLoyaltyPointsAreNotZero = sylius_plus_order_loyalty_points(order) != 0 %}
+{% set orderUser = order.customer.user %}
+{% if orderUser is not null and orderLoyaltyPointsAreNotZero %}
+    {% set columns = "3" %}
+{% endif %}
+
+<div class="grid grid-cols-{{ columns|default('2') }} gap-sm mt-md sm:grid-cols-1">
+    {% if orderUser is not null and orderLoyaltyPointsAreNotZero %}
+        <div class="box box--bordered flex flex-cross-center flex-item-fluid p-sm" id="sylius-loyalty-points">
+            {% include '@SyliusPlusPlugin/Loyalty/Shop/_loyaltyPointsSummary.html.twig' %}
+        </div>
+    {% endif %}
+    <div class="box box--bordered flex flex-cross-center flex-item-fluid p-sm" id="sylius-payments">
+        {% include '@SyliusShop/Common/Order/_payments.html.twig' %}
+    </div>
+    <div class="box box--bordered flex flex-cross-center flex-item-fluid p-sm" id="sylius-shipments">
+        {% include '@SyliusShop/Common/Order/_shipments.html.twig' %}
+    </div>
+</div>

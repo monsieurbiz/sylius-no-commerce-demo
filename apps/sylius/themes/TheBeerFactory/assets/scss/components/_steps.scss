@@ -1,0 +1,107 @@
+//
+// Steps
+// --------------------------------------------------------------------------
+
+.steps {
+  display: flex;
+  width: 100%;
+  margin: 0 0 spacer('md');
+}
+
+@media (min-width: bp('lg-min')) {
+  .steps {
+    margin: 0 0 spacer('lg');
+  }
+}
+
+// Item
+// --------------------------------------------------------------------------
+
+.steps__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  padding: spacer('xs') spacer('sm');
+  text-decoration: none;
+  border: 1px solid color('gray-light');
+  border-radius: radius('sm');
+  transition: all 0.2s ease-in-out;
+  transition-property: color, border-color;
+
+  &:not(:last-child) {
+    margin-right: spacer('sm');
+  }
+
+  &:focus,
+  &:hover {
+    color: color('primary');
+    border-color: currentColor;
+  }
+}
+
+.steps__item--active {
+  color: color('primary');
+  border-color: currentColor;
+}
+
+.steps__item--disabled {
+  color: color('gray-light');
+  pointer-events: none;
+}
+
+@media (max-width: bp('lg-max')) {
+  .steps__item {
+    display: none;
+  }
+
+  .steps__item--active {
+    display: flex;
+  }
+}
+
+// Icon
+// --------------------------------------------------------------------------
+
+.steps__icon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 calc(#{spacer('sm')} - 0.4rem) 0 -0.4rem;
+}
+
+// Content
+// --------------------------------------------------------------------------
+
+.steps__content {
+  flex: 1 1 auto;
+}
+
+// Title
+// --------------------------------------------------------------------------
+
+.steps__title {
+  margin: 0 0 spacer('xxs');
+  font-weight: font-weight('600');
+  line-height: line-height('tight');
+}
+
+@media (min-width: bp('lg-min')) {
+  .steps__title {
+    margin: 0 0 spacer('xs');
+    font-size: font-size('md');
+  }
+}
+
+// Description
+// --------------------------------------------------------------------------
+
+.steps__description {
+  font-size: font-size('xxs');
+  line-height: line-height('tight');
+}
+
+@media (min-width: bp('lg-min')) {
+  .steps__description {
+    font-size: font-size('xs');
+  }
+}

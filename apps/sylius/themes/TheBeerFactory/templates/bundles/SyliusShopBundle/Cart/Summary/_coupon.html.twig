@@ -1,0 +1,31 @@
+<div
+    class="mt-lg"
+    id="sylius-coupon"
+    {{ sylius_test_html_attribute('cart-promotion-coupon') }}
+>
+    <div class="flex flex-cross-end w-1/2 coupon sm:w-full">
+        <div class="flex-item-fluid">
+            <label class="label" for="sylius_cart_promotionCoupon">{{ 'sylius.ui.coupon'|trans }}</label>
+            {{ form_widget(form.promotionCoupon, sylius_test_form_attribute('cart-promotion-coupon-input')|sylius_merge_recursive({'attr': {'form': main_form, 'placeholder': 'sylius.ui.enter_your_code'|trans~'...', 'class': 'form-control'}})) }}
+        </div>
+        <button
+            class="btn ml-xs pr-sm pl-sm"
+            id="sylius-save"
+            type="submit"
+            {{ sylius_test_html_attribute('apply-coupon-button') }}
+            form="{{ main_form }}"
+        >
+            {{ 'sylius.ui.apply_coupon'|trans }}
+        </button>
+        {% if cart.orderPromotionTotal %}
+            <button
+                class="btn btn--link ml-xs pr-xs pl-xs"
+                type="button"
+                onclick="document.querySelector('#sylius_cart_promotionCoupon').value='';document.querySelector('#sylius_cart').submit();"
+            >
+                {{ 'sylius.ui.delete'|trans }}
+            </button>
+        {% endif %}
+    </div>
+    {{ form_errors(form.promotionCoupon) }}
+</div>

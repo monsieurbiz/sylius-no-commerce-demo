@@ -1,0 +1,18 @@
+<div class="flex w-full mb-lg sm:flex-column">
+    <div class="flex flex-column w-1/2 pr-xs sm:w-full sm:p-n" id="sylius-billing-address" {{ sylius_test_html_attribute('billing-address') }}>
+        <h3 class="h4 mt-n">
+            {{ 'sylius.ui.billing_address'|trans }}
+        </h3>
+        <div class="address flex-item-fluid flex-cross-start">
+            {% include '@SyliusShop/Common/_address.html.twig' with {'address': order.billingAddress} %}
+        </div>
+    </div>
+    <div class="flex flex-column w-1/2 pl-xs sm:w-full sm:mt-sm sm:p-n" id="sylius-shipping-address" {{ sylius_test_html_attribute('shipping-address') }}>
+        <h3 class="h4 mt-n">
+            {{ 'sylius.ui.shipping_address'|trans }}
+        </h3>
+        <div class="address flex-item-fluid flex-cross-start">
+            {% include '@SyliusShop/Common/_address.html.twig' with {'address': order.shippingAddress} %}
+        </div>
+    </div>
+</div>

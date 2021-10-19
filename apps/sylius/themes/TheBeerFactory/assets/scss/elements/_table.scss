@@ -1,0 +1,30 @@
+//
+// Table
+// -----------------------------------------------------------------------------
+
+table {
+  --table-border-color: #{color('gray-light')};
+
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: color('white-dimmed');
+}
+
+th,
+td {
+  padding: spacer('xs');
+  vertical-align: middle;
+  border: 1px solid var(--table-border-color);
+
+  p {
+    margin: 0;
+  }
+}
+
+th {
+  font-weight: font-weight('600');
+  text-align: left;
+}

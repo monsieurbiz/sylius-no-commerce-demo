@@ -1,0 +1,62 @@
+//
+// Header
+// -----------------------------------------------------------------------------
+
+.header {
+  position: relative;
+  z-index: 50;
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  justify-content: space-between;
+  height: 6rem;
+  width: 100%;
+}
+
+@media (max-width: bp('lg-max')) {
+  .header {
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: color('white');
+      content: '';
+    }
+  }
+}
+
+@media (min-width: bp('lg-min')) {
+  .header {
+    height: 10rem;
+  }
+}
+
+// Light variant
+// -----------------------------------------------------------------------------
+
+.header--light {
+  position: relative;
+  margin: 0 0 spacer('md');
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: -1;
+    width: 100vw;
+    height: 100%;
+    background: color('white');
+    box-shadow: 0 2px 8px 0 hsla(0, 0%, 0%, 0.1);
+    transform: translateX(-50%);
+    content: '';
+  }
+}
+
+@media (min-width: bp('lg-min')) {
+  .header--light {
+    height: 7rem;
+    margin: 0 0 spacer('lg');
+  }
+}

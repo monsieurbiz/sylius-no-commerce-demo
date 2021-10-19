@@ -1,0 +1,61 @@
+{% extends '@SyliusShop/Account/layout.html.twig' %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a class="breadcrumb__link" href="{{ path('sylius_shop_homepage') }}" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                <span itemprop="name">{{ 'sylius.ui.home'|trans }}</span>
+            </a>
+            <meta itemprop="position" content="1">
+        </li>
+        <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <strong class="breadcrumb__current" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                <span itemprop="name">{{ 'sylius.ui.my_account'|trans }}</span>
+            </strong>
+            <meta itemprop="position" content="2">
+        </li>
+    </ol>
+{% endblock %}
+
+{% block subcontent %}
+    <h2 class="h2 mt-n">
+        {{ 'sylius.ui.manage_your_personal_information_and_preferences'|trans }}
+    </h2>
+
+    {{ sylius_template_event('sylius.shop.account.dashboard.after_content_header', {'customer': customer}) }}
+
+    {% if not customer.user.verified %}
+        <form class="box box--bordered bg-white-dimmed flex flex-main-between flex-cross-center mb-md p-sm" id="verification-form" {{ sylius_test_html_attribute('verification-form') }} action="{{ path('sylius_shop_user_request_verification_token') }}" method="post">
+            <span class="text-600">
+                {{ 'sylius.ui.not_verified'|trans }}
+            </span>
+            <button type="submit" class="btn btn--reversed" {{ sylius_test_html_attribute('verification-button') }}>
+                {{ 'sylius.ui.verify'|trans }}
+            </button>
+        </form>
+    {% endif %}
+
+    <div id="customer-information" {{ sylius_test_html_attribute('customer-information') }}>
+        <div class="mb-xs">
+            {{ customer.fullName }}
+        </div>
+        <strong class="block">
+            {{ customer.email }}
+        </strong>
+    </div>
+
+    {{ sylius_template_event('sylius.shop.account.dashboard.after_information', {'customer': customer}) }}
+
+    <ul class="flex flex-wrap w-full mt-md list-unstyled sm:flex-column">
+        <li class="mr-xs sm:mr-n sm:mb-xs">
+            <a class="btn" href="{{ path('sylius_shop_account_profile_update') }}">
+                {{ 'sylius.ui.edit'|trans }}
+            </a>
+        </li>
+        <li class="mr-xs sm:mr-n">
+            <a class="btn" href="{{ path('sylius_shop_account_change_password') }}">
+                {{ 'sylius.ui.change_password'|trans }}
+            </a>
+        </li>
+    </ul>
+{% endblock %}

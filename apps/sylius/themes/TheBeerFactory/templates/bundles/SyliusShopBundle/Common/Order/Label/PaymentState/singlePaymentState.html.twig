@@ -1,0 +1,17 @@
+{%
+    set viewOptions = {
+        authorized: { color: "success" },
+        cancelled: { color: "error" },
+        completed: { color: "success" },
+        failed: { color: "error" },
+        new: { color: "info" },
+        processing: { color: "info" },
+        refunded: { color: "success" },
+    }
+%}
+
+{% set value = 'sylius.ui.' ~ state %}
+
+<span class="tag tag--{{ viewOptions[state]['color'] }}">
+    {{ value|trans }}
+</span>

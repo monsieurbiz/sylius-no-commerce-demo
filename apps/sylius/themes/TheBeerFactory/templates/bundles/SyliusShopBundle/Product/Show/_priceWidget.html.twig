@@ -1,0 +1,10 @@
+<div class="flex w-full">
+    <div class="flex-item-none">
+        {% if not product.variants.empty() %}
+            {% include '@SyliusShop/Product/Show/_price.html.twig' %}
+        {% endif %}
+    </div>
+    <div class="flex-item-fluid pt-xs text-right">
+        <span class="block text-600 text-xs text-uppercase">{{ product.code }}</span>
+    </div>
+</div>

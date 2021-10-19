@@ -1,0 +1,35 @@
+{% extends '@SyliusShop/Account/AddressBook/layout.html.twig' %}
+
+{% form_theme form '@SyliusShop/Form/theme.html.twig' %}
+
+{% block subcontent %}
+    <div class="mb-lg">
+        <h2 class="h2 mt-n mb-xs">
+            {{ 'sylius.ui.address_book'|trans }}
+        </h2>
+        <p class="m-n">{{ 'sylius.ui.add_address'|trans }}</p>
+    </div>
+
+    {{ sylius_template_event('sylius.shop.account.address_book.create.after_content_header', {'address': address}) }}
+
+    {{ form_start(form, {'action': path('sylius_shop_account_address_book_create'), 'attr': {'class': 'ui loadable form', 'novalidate': 'novalidate'}}) }}
+        {% include '@SyliusShop/Common/Form/_address.html.twig' with {'form': form} %}
+
+        <div class="flex flex-wrap w-full mt-md">
+            <div class="mr-xs">
+                <button class="btn" type="submit" {{ sylius_test_html_attribute('add-address') }}>
+                    {{ 'sylius.ui.add'|trans }}
+                </button>
+            </div>
+            <div class="mr-xs">
+                <a class="btn btn--reversed" href="{{ path('sylius_shop_account_address_book_index') }}">
+                    {{ 'sylius.ui.cancel'|trans }}
+                </a>
+            </div>
+        </div>
+
+        {{ sylius_template_event('sylius.shop.account.address_book.create.form', {'address': address}) }}
+
+        {{ form_row(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
+{% endblock %}

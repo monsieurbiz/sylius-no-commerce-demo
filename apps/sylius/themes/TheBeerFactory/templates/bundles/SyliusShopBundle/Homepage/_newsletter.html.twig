@@ -1,0 +1,29 @@
+<div class="box mb-2xl pt-2xl pb-2xl bg-white-dimmed sm:mb-lg sm:pt-md sm:pb-md">
+    <div class="w-1/2 mr-auto mb-md ml-auto md:w-4/5 sm:w-full">
+        <h2 class="h2 mt-n mb-md text-center sm:mb-sm">
+            {{ 'sylius.homepage.newsletter'|trans }}
+        </h2>
+        <p class="m-n sm:text-xs">
+            {{ 'sylius.homepage.newsletter_description'|trans|raw }}
+        </p>
+    </div>
+    <div class="w-1/2 mr-auto ml-auto md:w-4/5 sm:w-full">
+        <form class="flex flex-item-fluid flex-cross-end w-3/4 mr-auto ml-auto sm:flex-column sm:flex-cross-stretch sm:w-full">
+            <div class="flex-item-fluid">
+                <label class="label" for="newsletter-input">
+                    {{ 'sylius.ui.email'|trans }}
+                </label>
+                <input
+                    class="form-control"
+                    id="newsletter-input"
+                    type="text"
+                >
+            </div>
+            <div class="ml-xs sm:mt-xs sm:ml-n">
+                <button class="btn sm:w-full" type="submit">
+                    {{ 'sylius.homepage.subscribe'|trans }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

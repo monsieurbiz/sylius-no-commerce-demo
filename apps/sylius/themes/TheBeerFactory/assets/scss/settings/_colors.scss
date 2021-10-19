@@ -1,0 +1,55 @@
+//
+// Colors
+// -----------------------------------------------------------------------------
+
+@if $enable-root {
+  :root {
+    --color-global-white: hsl(0, 0%, 100%);
+    --color-global-white-dimmed: hsl(0, 0%, 98%);
+    --color-global-gray-light: hsl(0, 0%, 81%);
+    --color-global-gray: hsl(0, 0%, 44%);
+    --color-global-gray-dark: hsl(0, 0%, 14%);
+    --color-global-black: hsl(0, 0%, 0%);
+
+    --color-global-primary: hsl(18, 100%, 55%);
+    --color-global-primary-light: hsl(18, 100%, 63%);
+    --color-global-primary-dark: hsl(18, 100%, 47%);
+  }
+}
+
+// Global
+// -----------------------------------------------------------------------------
+
+$color-global-map: (
+  'white': var(--color-global-white),
+  'white-dimmed': var(--color-global-white-dimmed),
+  'gray-light': var(--color-global-gray-light),
+  'gray': var(--color-global-gray),
+  'gray-dark': var(--color-global-gray-dark),
+  'black': var(--color-global-black),
+  'primary': var(--color-global-primary),
+  'primary-light': var(--color-global-primary-light),
+  'primary-dark': var(--color-global-primary-dark),
+);
+
+// Message
+// -----------------------------------------------------------------------------
+
+$color-message-map: (
+  'info': hsl(219, 100%, 65%),
+  'success': hsl(116, 54%, 42%),
+  'warning': hsl(34, 100%, 50%),
+  'error': hsl(7, 70%, 50%),
+);
+
+// Networks
+// -----------------------------------------------------------------------------
+
+$color-network-map: (
+  'facebook': #3b5998,
+  'instagram': #517fa4,
+  'linkedin': #007bb6,
+  'pinterest': #cb2027,
+  'twitter': #00aced,
+  'youtube': #cc181e,
+);

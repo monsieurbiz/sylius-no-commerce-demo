@@ -1,0 +1,61 @@
+//
+// Page
+// -----------------------------------------------------------------------------
+
+.page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+
+  &.--fixed {
+    overflow: hidden;
+    touch-action: none;
+    overscroll-behavior: none;
+  }
+}
+
+@media (max-width: bp('lg-max')) {
+  .page {
+    &.--fixed {
+      max-height: 100%;
+    }
+  }
+}
+
+// Container
+// -----------------------------------------------------------------------------
+
+.page__container {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  width: 100%;
+  max-width: calc(#{$container-width} + (#{spacer('sm')} * 2));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: spacer('sm');
+  padding-left: spacer('sm');
+}
+
+// Content
+// -----------------------------------------------------------------------------
+
+.page__content {
+  position: relative;
+  flex: 1 1 auto;
+}
+
+// Small variant
+// -----------------------------------------------------------------------------
+
+@media (min-width: bp('lg-min')) {
+  .page--sm {
+    .page__content {
+      max-width: 96rem;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+}

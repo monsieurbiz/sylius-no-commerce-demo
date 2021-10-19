@@ -1,0 +1,18 @@
+{% extends '@SyliusShop/Email/layout.html.twig' %}
+
+{% block subject %}
+    {{ 'sylius.email.contact_request.subject'|trans({}, null, localeCode) }}
+{% endblock %}
+
+{% block content %}
+    <p style="font-size: 16px; line-height: 1.5; color: #333333; margin: .4em 0 1.250em;">
+        <strong>{{ 'sylius.email.contact_request.message_from'|trans({}, null, localeCode) }}:</strong>
+        <br/>
+        {{ data.email }}
+    </p>
+    <p style="font-size: 16px; line-height: 1.5; color: #333333; margin: .4em 0 1.250em;">
+        <strong>Content:</strong>
+        <br/>
+        {{ data.message|nl2br }}
+    </p>
+{% endblock %}

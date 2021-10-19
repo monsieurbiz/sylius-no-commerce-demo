@@ -1,0 +1,49 @@
+//
+// Address
+// -----------------------------------------------------------------------------
+
+.address {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: spacer('sm');
+  background-color: color('white');
+  border: 1px solid color('gray-light');
+  border-radius: radius('sm');
+}
+
+@media (min-width: bp('md-min')) {
+  .address {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+// Infos
+// -----------------------------------------------------------------------------
+
+.address__infos {
+  flex: 1 1 auto;
+}
+
+// Actions
+// -----------------------------------------------------------------------------
+
+.address__actions {
+  display: flex;
+  flex-direction: column;
+  margin: spacer('sm') 0 0;
+
+  a,
+  button {
+    width: 100%;
+  }
+}
+
+@media (min-width: bp('md-min')) {
+  .address__actions {
+    flex: 0 0 auto;
+    margin: 0 0 0 spacer('md');
+  }
+}

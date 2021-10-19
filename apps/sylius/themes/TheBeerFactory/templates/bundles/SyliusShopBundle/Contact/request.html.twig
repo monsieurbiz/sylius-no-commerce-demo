@@ -1,0 +1,46 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% form_theme form '@SyliusShop/Form/theme.html.twig' %}
+
+{% block content %}
+    <div class="w-1/2 mr-auto ml-auto md:w-2/3 sm:w-full">
+        <div class="mt-lg mb-lg sm:mt-sm sm:mb-sm">
+            <h1 class="h1 mt-n mb-xs">
+                {{ 'sylius.ui.contact_us'|trans }}
+            </h1>
+            <p class="m-n">
+                {{ 'sylius.ui.use_the_contact_form_below_to_send_us_a_message'|trans }}
+            </p>
+
+            {{ sylius_template_event('sylius.shop.contact.request.after_content_header') }}
+        </div>
+
+        <div class="box">
+            {{ form_start(form,
+                {
+                    'action': path('sylius_shop_contact_request'),
+                    'attr': {
+                        'class': 'ui loadable form', 'novalidate': 'novalidate'
+                    }
+                }
+            ) }}
+                <div class="mb-sm">
+                    {{ form_row(form.email, sylius_test_form_attribute('contact-email')) }}
+                </div>
+                <div class="mb-sm">
+                    {{ form_row(form.message, sylius_test_form_attribute('contact-message')) }}
+                </div>
+                {{ sylius_template_event('sylius.shop.contact.request.form', {'form': form}) }}
+
+                {{ form_row(form._token) }}
+                <button
+                    class="btn"
+                    type="submit"
+                    {{ sylius_test_html_attribute('send-button') }}
+                >
+                    {{ 'sylius.ui.send'|trans }}
+                </button>
+            {{ form_end(form, {'render_rest': false}) }}
+        </div>
+    </div>
+{% endblock %}

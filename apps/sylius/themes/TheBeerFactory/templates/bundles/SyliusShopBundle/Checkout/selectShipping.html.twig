@@ -1,0 +1,34 @@
+{% extends '@SyliusShop/Checkout/layout.html.twig' %}
+
+{% form_theme form '@SyliusShop/Form/theme.html.twig' %}
+
+{% block content %}
+    {{ sylius_template_event(['sylius.shop.checkout.select_shipping.steps', 'sylius.shop.checkout.steps'], _context|merge({'active': 'select_shipping', 'orderTotal': order.total})) }}
+
+    <div class="flex w-full lg:flex-column md:flex-column sm:flex-column">
+        <div
+            class="w-2/3 pr-sm lg:w-full lg:pr-n md:w-full md:pr-n sm:w-full sm:pr-n"
+            id="sylius-shipping-methods"
+        >
+            <div class="box">
+                {{ sylius_template_event('sylius.shop.checkout.select_shipping.before_form', {'order': order}) }}
+
+                {{ form_start(form, {'action': path('sylius_shop_checkout_select_shipping'), 'attr': {'class': 'ui loadable form', 'novalidate': 'novalidate'}}) }}
+                    {{ form_errors(form) }}
+                    <input type="hidden" name="_method" value="PUT" />
+
+                    {% include '@SyliusShop/Checkout/SelectShipping/_form.html.twig' %}
+
+                    {{ sylius_template_event('sylius.shop.checkout.select_shipping.before_navigation', {'order': order}) }}
+
+                    {% include '@SyliusShop/Checkout/SelectShipping/_navigation.html.twig' %}
+
+                    {{ form_row(form._token) }}
+                {{ form_end(form, {'render_rest': false}) }}
+            </div>
+        </div>
+        <div class="w-1/3 lg:w-full md:w-full sm:w-full">
+            {{ sylius_template_event(['sylius.shop.checkout.select_shipping.sidebar', 'sylius.shop.checkout.sidebar'], _context) }}
+        </div>
+    </div>
+{% endblock %}

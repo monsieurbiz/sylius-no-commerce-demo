@@ -1,0 +1,12 @@
+<h2 class="h3 mt-n mb-lg sm:mb-sm">{{ 'sylius.ui.registered_customers'|trans }}</h2>
+{{ form_start(form, {'action': path('sylius_shop_login_check'), 'attr': {'novalidate': 'novalidate'}}) }}
+    {% include '@SyliusShop/Login/_form.html.twig' %}
+
+    {{ sylius_template_event('sylius.shop.login.form', {'form': form}) }}
+
+    <button class="btn sm:w-full" type="submit" {{ sylius_test_html_attribute('login-button') }}>
+        {{ 'sylius.ui.login'|trans }}
+    </button>
+
+    <input type="hidden" name="_csrf_shop_security_token" value="{{ csrf_token('shop_authenticate') }}">
+{{ form_end(form, {'render_rest': false}) }}

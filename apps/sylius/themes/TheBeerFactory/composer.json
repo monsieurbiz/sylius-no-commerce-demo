@@ -1,0 +1,14 @@
+{
+  "name": "sylius/theme-thebeerfactory",
+  "authors": [
+    {
+      "name": "Monsieur Biz",
+      "email": "hello@monsieurbiz.com"
+    }
+  ],
+  "extra": {
+    "sylius-theme": {
+      "title": "The Beer Factory"
+    }
+  }
+}

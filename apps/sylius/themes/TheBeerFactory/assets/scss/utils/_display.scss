@@ -1,0 +1,11 @@
+//
+// Display
+// -----------------------------------------------------------------------------
+
+@if $enable-display-utilities {
+  @include display;
+
+  @if $enable-responsive-display {
+    @include responsive('display');
+  }
+}

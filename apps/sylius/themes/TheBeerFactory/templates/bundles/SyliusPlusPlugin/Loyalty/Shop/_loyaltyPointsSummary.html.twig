@@ -1,0 +1,22 @@
+<div class="flex flex-cross-center w-full">
+    <svg
+        class="mr-sm"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="40"
+        height="40"
+    >
+        <path d="M16.25 2a3.25 3.25 0 012.74 5h.76c.97 0 1.75.78 1.75 1.75v2c0 .97-.78 1.75-1.75 1.75h-.25v6.25a2.75 2.75 0 01-2.58 2.75H6.75A2.75 2.75 0 014 18.75V12.5h-.25c-.97 0-1.75-.78-1.75-1.75v-2C2 7.78 2.78 7 3.75 7h.76a3.25 3.25 0 012.73-5c1.85-.03 3.49 1.32 4.51 3.48l.08-.17c1.03-2.06 2.63-3.34 4.42-3.3zM11 12.5H5.5v6.25c0 .65.5 1.18 1.12 1.24l.13.01H11v-7.5zm7 0h-5.5V20h4.25c.65 0 1.18-.5 1.24-1.12l.01-.13V12.5zm-7-4H3.75a.25.25 0 00-.25.25v2c0 .14.11.25.25.25H11V8.5zm8.75 0H12.5V11h7.25c.14 0 .25-.11.25-.25v-2a.25.25 0 00-.25-.25zm-12.5-5a1.75 1.75 0 100 3.5h3.5c-.73-2.12-2.01-3.42-3.34-3.5zm8.99 0c-1.38-.02-2.73 1.3-3.49 3.5h3.6a1.75 1.75 0 00-.11-3.5z"/>
+    </svg>
+    <div class="flex-item-fluid">
+        <span class="block text-600">
+            {{ 'sylius_plus.ui.loyalty_points'|trans }}
+        </span>
+        <span
+            class="block text-tight"
+            {{ sylius_test_html_attribute('loyalty-points-summary-amount') }}
+        >
+            +{{ sylius_plus_order_loyalty_points(order)}}
+        </span>
+    </div>
+</div>

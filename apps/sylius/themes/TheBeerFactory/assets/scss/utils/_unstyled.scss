@@ -1,0 +1,9 @@
+//
+// Unstyled
+// -----------------------------------------------------------------------------
+
+@if $enable-unstyled-utilities {
+  .list-unstyled {
+    @extend %list-unstyled;
+  }
+}

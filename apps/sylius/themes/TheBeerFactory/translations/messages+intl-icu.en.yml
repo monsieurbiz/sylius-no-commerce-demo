@@ -1,0 +1,3 @@
+app:
+    ui:
+        review: '{count, plural, =0 {No review} one {%count% review} other {%count% reviews}}'

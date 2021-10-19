@@ -1,0 +1,24 @@
+{% import '@SyliusShop/Macro/buttons.html.twig' as buttons %}
+{% import '@SyliusUi/Macro/flags.html.twig' as flags %}
+
+<div class="mb-lg">
+    <div class="flex flex-main-between flex-cross-start sm:flex-column-reverse">
+        <div class="flex-item-fluid">
+            <h2 class="h2 mt-n mb-xs">
+                {{ 'sylius.ui.order'|trans }} #{{ order.number }}
+            </h2>
+            <h3 class="h4 mt-n text-regular">
+                {{ order.checkoutCompletedAt|format_date }}
+            </h3>
+        </div>
+        <div class="flex-item-none ml-md sm:ml-n sm:mb-xs">
+            {% include [('@SyliusShop/Account/Order/Label/State' ~ '/' ~ order.state ~ '.html.twig'), '@SyliusShop/Label/_default.html.twig'] with {'value': ('sylius.ui.' ~ order.state)|trans} %}
+        </div>
+    </div>
+
+    {% if order.paymentState in ['awaiting_payment'] %}
+        <div class="mt-sm">
+            {{ buttons.default(path('sylius_shop_order_show', {'tokenValue': order.tokenValue}), 'sylius.ui.pay', null) }}
+        </div>
+    {% endif %}
+</div>

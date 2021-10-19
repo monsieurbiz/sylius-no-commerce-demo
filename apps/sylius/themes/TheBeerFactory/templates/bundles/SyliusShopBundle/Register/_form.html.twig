@@ -1,0 +1,35 @@
+<div class="box__columns">
+    <div class="box__column">
+        <h2 class="h3 mt-n mb-lg sm:mb-sm">
+            {{ 'sylius.ui.personal_information'|trans }}
+        </h2>
+        <div class="flex w-full mb-sm sm:flex-column sm:mb-n">
+            <div class="w-1/2 pr-xs sm:w-full sm:mb-sm sm:p-n">
+                {{ form_row(form.firstName, sylius_test_form_attribute('first-name')) }}
+            </div>
+            <div class="w-1/2 pl-xs sm:w-full sm:mb-sm sm:p-n">
+                {{ form_row(form.lastName, sylius_test_form_attribute('last-name')) }}
+            </div>
+        </div>
+        <div class="mb-sm">
+            {{ form_row(form.email, sylius_test_form_attribute('email')) }}
+        </div>
+        <div class="w-2/3 mb-sm">
+            {{ form_row(form.phoneNumber, sylius_test_form_attribute('phonnumber')) }}
+        </div>
+        <div class="mb-sm">
+            {{ form_row(form.subscribedToNewsletter, sylius_test_form_attribute('subscribed-tnewsletter')) }}
+        </div>
+    </div>
+    <div class="box__column">
+        <h2 class="h3 mt-n mb-lg sm:mb-sm">
+            {{ 'sylius.ui.account_credentials'|trans }}
+        </h2>
+        <div class="mb-sm">
+            {{ form_row(form.user.plainPassword.first, sylius_test_form_attribute('password-first')) }}
+        </div>
+        <div class="mb-sm">
+            {{ form_row(form.user.plainPassword.second, sylius_test_form_attribute('password-second')) }}
+        </div>
+    </div>
+</div>

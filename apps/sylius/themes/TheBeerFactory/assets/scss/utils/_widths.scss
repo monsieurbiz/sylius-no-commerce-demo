@@ -1,0 +1,11 @@
+//
+// Widths utilities
+// -----------------------------------------------------------------------------
+
+@if $enable-widths-utilities {
+  @include widths;
+
+  @if $enable-responsive-widths {
+    @include responsive('widths');
+  }
+}

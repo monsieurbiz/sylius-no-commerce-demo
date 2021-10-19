@@ -1,0 +1,125 @@
+//
+// Button
+// -----------------------------------------------------------------------------
+
+.btn {
+  --button-min-height: 4rem;
+  --button-padding-top-bottom: #{spacer('xs')};
+  --button-padding-right-left: #{spacer('lg')};
+  --button-color: #{color('white')};
+  --button-font-weight: #{font-weight('600')};
+  --button-font-size: #{font-size('xs')};
+  --button-background-color: #{color('primary')};
+  --button-border-color: var(--button-background-color);
+  --button-border-radius: #{radius('sm')};
+
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--button-min-height);
+  padding: var(--button-padding-top-bottom) var(--button-padding-right-left);
+  overflow: hidden;
+  color: var(--button-color);
+  font-weight: var(--button-font-weight);
+  font-size: var(--button-font-size);
+  font-family: font-family('base');
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: baseline;
+  background: var(--button-background-color);
+  border: 1px solid var(--button-border-color);
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  transition-property: color, background-color, border-color, opacity;
+
+  &:focus,
+  &:hover {
+    --button-background-color: #{color('primary-dark')};
+
+    color: var(--button-color);
+    text-decoration: none;
+  }
+
+  &:active {
+    --button-border-color: #{color('primary-light')};
+  }
+
+  &[disabled] {
+    --button-color: #{color('white')};
+    --button-background-color: #{color('gray-light')};
+    --button-border-color: #{color('gray-light')};
+
+    cursor: not-allowed;
+  }
+
+  &.loading {
+    &::before {
+      content: none;
+    }
+
+    &::after {
+      position: inherit;
+      top: inherit;
+      left: inherit;
+      z-index: inherit;
+      width: 2rem;
+      height: 2rem;
+      margin: 0 0 0 spacer('xs');
+      border: 3px solid var(--button-color);
+      border-top-color: var(--button-background-color);
+      border-radius: radius('full');
+      animation: spin 1s ease-in-out infinite;
+      content: '';
+    }
+  }
+}
+
+// Reversed variant
+// -----------------------------------------------------------------------------
+
+.btn--reversed {
+  --button-color: #{color('primary')};
+  --button-background-color: #{color('white')};
+  --button-border-color: #{color('primary')};
+
+  &:focus,
+  &:hover {
+    --button-color: #{color('primary-dark')};
+    --button-background-color: #{color('white')};
+    --button-border-color: #{color('primary-dark')};
+  }
+
+  &[disabled] {
+    --button-color: #{color('gray-light')};
+    --button-background-color: #{color('white')};
+    --button-border-color: #{color('gray-light')};
+  }
+}
+
+// Link variant
+// -----------------------------------------------------------------------------
+
+.btn--link {
+  &,
+  &:focus,
+  &:hover {
+    --button-color: #{color('primary')};
+    --button-background-color: transparent;
+    --button-border-color: transparent;
+  }
+
+  &:focus,
+  &:hover {
+    --button-color: #{color('primary-dark')};
+  }
+
+  &[disabled] {
+    --button-color: #{color('gray-light')};
+    --button-background-color: transparent;
+    --button-border-color: transparent;
+  }
+}

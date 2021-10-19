@@ -1,0 +1,9 @@
+webpack_encore:
+    builds:
+        thebeerfactory-theme: '%kernel.project_dir%/public/build/themes/thebeerfactory'
+
+framework:
+    assets:
+        packages:
+            thebeerfactory-theme:
+                json_manifest_path: '%kernel.project_dir%/public/build/themes/thebeerfactory/manifest.json'
