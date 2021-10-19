@@ -1,4 +1,4 @@
-FROM monsieurbiz/php:8.0-apache
+FROM monsieurbiz/php:8.0-fpm
 
 RUN pecl install redis && \
     docker-php-ext-enable redis
@@ -26,7 +26,7 @@ RUN apt-get update && \
 RUN pecl install apcu
 RUN echo "extension=apcu.so" > ${PHP_INI_DIR}/conf.d/apcu.ini
 
-COPY files/vhost.conf /etc/apache2/sites-enabled/vhost.conf
+COPY files/vhost.conf /etc/nginx/sites-enabled/vhost.conf
 
 # Symfony binary
 COPY files/bin/console /usr/local/bin/console
