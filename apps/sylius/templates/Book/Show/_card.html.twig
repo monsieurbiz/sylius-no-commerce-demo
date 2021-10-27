@@ -4,7 +4,7 @@
             {{ book.title }}
         </div>
         <div class="meta">
-            {{ book.description | nl2br }}
+            {{ book.description | monsieurbiz_richeditor_render_field }}
             <div class="ui divider hidden"></div>
             {{ 'sylius.ui.created_at' | trans }} : {{ book.createdAt | format_datetime() }}
         </div>

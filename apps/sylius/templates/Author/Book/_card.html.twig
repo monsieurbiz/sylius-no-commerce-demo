@@ -1,10 +1,10 @@
 <div class="ui card">
     <div class="content">
         <div class="header">
-            {{ book.title }}
+            <a href="{{ path('app_book_show', {id: book.id}) }}">{{ book.title }}</a>
         </div>
         <div class="meta">
-            {{ book.description | nl2br }}
+            {{ book.description | monsieurbiz_richeditor_render_field }}
         </div>
     </div>
     <div class="extra content">
